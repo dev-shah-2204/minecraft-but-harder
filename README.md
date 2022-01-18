@@ -7,7 +7,8 @@ The game is quite easy now. This plugin makes the game difficult. Two hits from 
 How do you beat the game? You summon the Zombie Boss using `/spawnboss.`
 The Zombie boss drops 25 Eyes of Ender, 64 Ender Pearls and a really cool combat set when you beat him. 13 more than you need to complete and empty portal. It won't be easy to defeat him though.
 
-But don't worry, there's a good part too. You get a cool reward every 5 xp levels. These include armor, tools and weapons with custom enchantments!
+But don't worry, there's a good part too. You get a cool reward every 5 xp levels. These include armor, tools and weapons with custom enchantments!<br>
+Secondly, when you die, your precious items get stored in a chest at the spot that you died and you're given that spot's coordinates. You don't wanna lose that stuff, right?
 
 Moreover, you get the cooked variant of the food that an animal would usually drop.
 Cooked Porkchop instead of Porkchop, Steak instead of Beef, Cooked Mutton instead of Raw Mutton etc.
