@@ -26,6 +26,7 @@ public class TabCompletion implements TabCompleter {
                 items.add("claudiusAegis");
                 items.add("servantShovel");
                 items.add("minerFriend");
+                items.add("devilStick");
                 items.add("devilHelmet");
                 items.add("devilChestplate");
                 items.add("devilLeggings");
