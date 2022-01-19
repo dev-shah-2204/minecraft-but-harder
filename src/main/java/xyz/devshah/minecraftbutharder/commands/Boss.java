@@ -2,6 +2,7 @@ package xyz.devshah.minecraftbutharder.commands;
 
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.World;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -48,16 +49,26 @@ public class Boss implements CommandExecutor {
                 }
             }
 
+            if (!(player.getWorld().getEnvironment().equals(World.Environment.NETHER))) {
+                sender.sendMessage("§cThe undead king can only be fought in the nether");
+                return true;
+            }
+
             Entity boss = player.getWorld().spawnEntity(location, EntityType.ZOMBIE);
             Zombie zombie = (Zombie) boss;
             zombie.setCustomName("Undead King");
             zombie.setAdult(); // A baby boss would look weird
 
-            List<Entity> entityList = zombie.getNearbyEntities(3,3,3);
+            List<Entity> entityList = player.getNearbyEntities(10,10,10);
 
             for (Entity entity : entityList) {
                 if (entity instanceof Chicken) {
-                    entity.removePassenger(zombie);
+                    List<Entity> entities = entity.getPassengers();
+                    for (Entity otherEntity : entities ) {
+                        if (otherEntity == (Entity) zombie) {
+                            entity.removePassenger(otherEntity);
+                        }
+                    }
                 }
             }
 
@@ -65,7 +76,7 @@ public class Boss implements CommandExecutor {
             ItemStack chestplate = new ItemStack(Material.NETHERITE_CHESTPLATE, 1);
             ItemStack leggings = new ItemStack(Material.NETHERITE_LEGGINGS, 1);
             ItemStack boots = new ItemStack(Material.NETHERITE_BOOTS, 1);
-            ItemStack weapon = new ItemStack(Material.DIAMOND_SWORD, 1);
+            ItemStack weapon = new ItemStack(Material.NETHERITE_SWORD, 1);
 
             helmet.addUnsafeEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 12);
             helmet.addUnsafeEnchantment(Enchantment.PROTECTION_FIRE, 5);
@@ -96,8 +107,8 @@ public class Boss implements CommandExecutor {
             zombie.addPotionEffect(new PotionEffect(PotionEffectType.WEAKNESS, 3*20, 255, false, false));
             addEffect(zombie, PotionEffectType.FIRE_RESISTANCE, 0);
             addEffect(zombie, PotionEffectType.INCREASE_DAMAGE, 0);
-            addEffect(zombie, PotionEffectType.ABSORPTION, 1);
-            addEffect(zombie, PotionEffectType.HEALTH_BOOST, 7);
+            addEffect(zombie, PotionEffectType.ABSORPTION, 3);
+            addEffect(zombie, PotionEffectType.HEALTH_BOOST, 10);
             addEffect(zombie, PotionEffectType.SPEED, 1);
             addEffect(zombie, PotionEffectType.JUMP, 1);
             addEffect(zombie, PotionEffectType.GLOWING, 0);

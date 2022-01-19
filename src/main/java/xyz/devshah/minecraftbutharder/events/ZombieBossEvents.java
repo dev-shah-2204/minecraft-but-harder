@@ -53,8 +53,10 @@ public class ZombieBossEvents implements Listener {
 
     @EventHandler
     public void onZombieTurnFishman(EntityTransformEvent event) {
-        if (event.getEntity().getCustomName() == "Undead King") {
-            event.setCancelled(true);
+        if (event.getEntity().getCustomName() != null) {
+            if (event.getEntity().getCustomName() == "Undead King" && event.getEntity() instanceof Zombie) {
+                event.setCancelled(true);
+            }
         }
     }
 
@@ -62,7 +64,7 @@ public class ZombieBossEvents implements Listener {
     public void onEntityDamage(EntityDamageEvent event) {
         Entity entity = event.getEntity();
 
-        if (entity.getCustomName() == "Undead King") {
+        if (entity.getCustomName() == "Undead King" && entity instanceof Zombie) {
             if (event.getCause() == EntityDamageEvent.DamageCause.SUFFOCATION) {
                 event.setCancelled(true);
             }
@@ -75,11 +77,11 @@ public class ZombieBossEvents implements Listener {
         Entity damager = event.getDamager();
 
         if (entity.getCustomName() != null) {
-            if (entity.getCustomName().equalsIgnoreCase("Undead King") && damager instanceof IronGolem) {
+            if (entity.getCustomName().equalsIgnoreCase("Undead King") && damager instanceof IronGolem && entity instanceof Zombie) {
                 event.setDamage(2); // Almost immune to Iron Golems
             }
 
-            if (entity.getCustomName().equalsIgnoreCase("Undead King") && damager instanceof Player) {
+            if (entity.getCustomName().equalsIgnoreCase("Undead King") && damager instanceof Player && entity instanceof Zombie) {
                 ((Zombie) entity).setTarget((LivingEntity) event.getDamager());
                 Random random = new Random();
                 double r = random.nextDouble();
@@ -98,7 +100,7 @@ public class ZombieBossEvents implements Listener {
         }
 
         if (damager.getCustomName() != null && entity instanceof Player) {
-            if (damager.getCustomName().equalsIgnoreCase("Undead King")) {
+            if (damager.getCustomName().equalsIgnoreCase("Undead King") && damager instanceof Zombie) {
                 Player player = (Player) entity;
                 Random random = new Random();
                 double r = random.nextDouble();
@@ -129,7 +131,7 @@ public class ZombieBossEvents implements Listener {
         Entity entity = event.getEntity();
         Entity target = event.getTarget();
         if (entity.getCustomName() != null) {
-            if (entity.getCustomName() == "Undead King") {
+            if (entity.getCustomName() == "Undead King" && entity instanceof Zombie) {
                 if (!(target instanceof Player)) {
                     List<Entity> entityList = event.getEntity().getNearbyEntities(50, 50, 50);
 
@@ -147,7 +149,7 @@ public class ZombieBossEvents implements Listener {
     @EventHandler
     public void onBossDeath(EntityDeathEvent event) {
         Entity entity = event.getEntity();
-        if (entity.getCustomName() != null && entity.getCustomName().equalsIgnoreCase("Undead King")) {
+        if (entity.getCustomName() != null && entity.getCustomName().equalsIgnoreCase("Undead King") && entity instanceof Zombie) {
             World world = entity.getWorld();
             Sound sound = Sound.UI_TOAST_CHALLENGE_COMPLETE;
             Location location = entity.getLocation();
@@ -193,7 +195,7 @@ public class ZombieBossEvents implements Listener {
             _chest.setType(Material.CHEST);
 
             Chest chest = (Chest) _chest.getState();
-            chest.getInventory().setItem(10, Weapons.devilSword);
+            chest.getInventory().setItem(0, Weapons.devilSword);
             chest.getInventory().setItem(1, Armor.beelzebubHelmet);
             chest.getInventory().setItem(2, Armor.asmodiusChestplate);
             chest.getInventory().setItem(3, Armor.mammonLeggings);

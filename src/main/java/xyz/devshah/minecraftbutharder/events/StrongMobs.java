@@ -19,7 +19,7 @@ public class StrongMobs implements Listener {
     private void addEquipment(Entity entity, int avgLevel, ItemStack helmet, ItemStack chestplate, ItemStack leggings, ItemStack boots, ItemStack weapon) {
         int enchantLevel;
         if (avgLevel <= 7) { enchantLevel = 3; }  // Really difficult for levels lower than 7
-        else {enchantLevel = (int) (avgLevel / 5);}  // Moderately difficult for levels higher than 7
+        else {enchantLevel = (int) (avgLevel / 4.5);}  // Moderately difficult for levels higher than 7
 
         helmet.addUnsafeEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, enchantLevel);
         chestplate.addUnsafeEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, enchantLevel);
@@ -91,35 +91,44 @@ public class StrongMobs implements Listener {
 
         if (entity instanceof Zombie || entity instanceof ZombieVillager) {
             // Giving gear
-            double r = random.nextDouble();
-            if (r <= 0.45) { addEquipment(entity, avgLevel, lHelmet, lChestplate, lLeggings, lBoots, gSword); }
-            else if (r <= 0.75) { addEquipment(entity, avgLevel, gHelmet, gChestplate, gLeggings, gBoots, gSword); }
-            else if (r <= 0.90) { addEquipment(entity, avgLevel, iHelmet, iChestplate, iLeggings, iBoots, iSword); }
-            else { addEquipment(entity, avgLevel, dHelmet, dChestplate, dLeggings, dBoots, iSword); }
+            if (entity.getCustomName() == null) {
+                double r = random.nextDouble();
+                if (r <= 0.45) {
+                    addEquipment(entity, avgLevel, lHelmet, lChestplate, lLeggings, lBoots, gSword);
+                } else if (r <= 0.75) {
+                    addEquipment(entity, avgLevel, gHelmet, gChestplate, gLeggings, gBoots, gSword);
+                } else if (r <= 0.90) {
+                    addEquipment(entity, avgLevel, iHelmet, iChestplate, iLeggings, iBoots, iSword);
+                } else {
+                    addEquipment(entity, avgLevel, dHelmet, dChestplate, dLeggings, dBoots, iSword);
+                }
 
-            int effectAmplifier = ((int) (avgLevel / 6));
-            if (effectAmplifier > 0) { effectAmplifier -= 1; }
-            ((LivingEntity) entity).addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, Integer.MAX_VALUE, effectAmplifier, false, false));
+                int effectAmplifier = ((int) (avgLevel / 6));
+                if (effectAmplifier > 0) {
+                    effectAmplifier -= 1;
+                }
+                ((LivingEntity) entity).addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, Integer.MAX_VALUE, effectAmplifier, false, false));
 
-            // Spawning Air Guardians
-            double airGuardianSpawn = random.nextDouble();
-            if (entity.getCustomName() == null && airGuardianSpawn <= 0.20) {
-                Chicken chicken = (Chicken) entity.getWorld().spawnEntity(entity.getLocation(), EntityType.CHICKEN);
-                Zombie rider = (Zombie) entity;
-                rider.setBaby();
+                // Spawning Air Guardians
+                double airGuardianSpawn = random.nextDouble();
+                if (airGuardianSpawn <= 0.20) {
+                    Chicken chicken = (Chicken) entity.getWorld().spawnEntity(entity.getLocation(), EntityType.CHICKEN);
+                    Zombie rider = (Zombie) entity;
+                    rider.setBaby();
 
-                rider.getEquipment().setHelmet(dHelmet);
-                rider.getEquipment().setItemInMainHand(Weapons.devilStick);
+                    rider.getEquipment().setHelmet(dHelmet);
+                    rider.getEquipment().setItemInMainHand(Weapons.devilStick);
 
-                rider.getEquipment().setHelmetDropChance(0);
-                rider.getEquipment().setItemInMainHandDropChance(0.1F);
-                rider.removePotionEffect(PotionEffectType.INCREASE_DAMAGE);
-                rider.setHealth(1);
+                    rider.getEquipment().setHelmetDropChance(0);
+                    rider.getEquipment().setItemInMainHandDropChance(0.1F);
+                    rider.removePotionEffect(PotionEffectType.INCREASE_DAMAGE);
+                    rider.setHealth(1);
 
-                chicken.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, Integer.MAX_VALUE, 3));
-                chicken.addPotionEffect(new PotionEffect(PotionEffectType.JUMP, Integer.MAX_VALUE, 3));
-                chicken.addPotionEffect(new PotionEffect(PotionEffectType.SLOW_FALLING, Integer.MAX_VALUE, 0));
-                chicken.addPassenger(rider);
+                    chicken.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, Integer.MAX_VALUE, 3));
+                    chicken.addPotionEffect(new PotionEffect(PotionEffectType.JUMP, Integer.MAX_VALUE, 3));
+                    chicken.addPotionEffect(new PotionEffect(PotionEffectType.SLOW_FALLING, Integer.MAX_VALUE, 0));
+                    chicken.addPassenger(rider);
+                }
             }
         }
 
