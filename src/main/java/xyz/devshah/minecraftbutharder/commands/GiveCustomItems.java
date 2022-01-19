@@ -21,6 +21,12 @@ public class GiveCustomItems implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
+        if (sender instanceof Player) {
+            if (!(sender.isOp())) {
+                sender.sendMessage("§cOnly server operators can use that command");
+                return true;
+            }
+        }
         if (cmd.getName().equalsIgnoreCase("givecustom")){
             if (args.length == 0) {
                 sender.sendMessage("Command incomplete. Correct usage is /givecustom <item> [player]");
