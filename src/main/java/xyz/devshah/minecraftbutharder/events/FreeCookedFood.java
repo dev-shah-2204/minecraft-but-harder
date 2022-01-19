@@ -30,7 +30,7 @@ public class FreeCookedFood implements Listener {
 
         if (entity.getType() == EntityType.COW) {
             event.getDrops().clear();
-            event.setDroppedExp(event.getDroppedExp()/2);
+            event.setDroppedExp((int) (event.getDroppedExp()/1.7));
 
             dropItem(entity, Material.COOKED_BEEF, 2);
             if (dropRare(0.4)) { dropItem(entity, Material.LEATHER, 1); }
@@ -38,7 +38,7 @@ public class FreeCookedFood implements Listener {
 
         if (entity.getType() == EntityType.CHICKEN) {
             event.getDrops().clear();
-            event.setDroppedExp(event.getDroppedExp()/2);
+            event.setDroppedExp((int) (event.getDroppedExp()/1.7));
 
             dropItem(entity, Material.COOKED_CHICKEN, 1);
             if (dropRare(0.4)) { dropItem(entity, Material.FEATHER, 1); }
@@ -46,7 +46,7 @@ public class FreeCookedFood implements Listener {
 
         if (entity.getType() == EntityType.COD) {
             event.getDrops().clear();
-            event.setDroppedExp(event.getDroppedExp()/2);
+            event.setDroppedExp((int) (event.getDroppedExp()/1.7));
 
             dropItem(entity, Material.COOKED_COD, 1);
             if (dropRare(0.35)) {  dropItem(entity, Material.BONE_MEAL, 1); }
@@ -54,7 +54,7 @@ public class FreeCookedFood implements Listener {
 
         if (entity.getType() == EntityType.SALMON) {
             event.getDrops().clear();
-            event.setDroppedExp(event.getDroppedExp()/2);
+            event.setDroppedExp((int) (event.getDroppedExp()/1.7));
 
             dropItem(entity, Material.COOKED_SALMON, 1);
             if (dropRare(0.35)) { dropItem(entity, Material.BONE_MEAL, 1); }
@@ -62,7 +62,7 @@ public class FreeCookedFood implements Listener {
 
         if (entity.getType() == EntityType.MUSHROOM_COW) {
             event.getDrops().clear();
-            event.setDroppedExp(event.getDroppedExp()/2);
+            event.setDroppedExp((int) (event.getDroppedExp()/1.7));
 
             dropItem(entity, Material.COOKED_BEEF, 2);
             if (dropRare((float) 0.4)) { dropItem(entity, Material.LEATHER, 1); }
@@ -70,7 +70,7 @@ public class FreeCookedFood implements Listener {
 
         if (entity.getType() == EntityType.RABBIT) {
             event.getDrops().clear();
-            event.setDroppedExp(event.getDroppedExp()/2);
+            event.setDroppedExp((int) (event.getDroppedExp()/1.7));
 
             dropItem(entity, Material.COOKED_RABBIT, 1);
             if (dropRare((float) 0.45)) { dropItem(entity, Material.RABBIT_HIDE, 1); }
@@ -80,25 +80,25 @@ public class FreeCookedFood implements Listener {
         // Entity with regular drops
         if (entity.getType() == EntityType.PIG) {
             event.getDrops().clear();
-            event.setDroppedExp(event.getDroppedExp()/2);
+            event.setDroppedExp((int) (event.getDroppedExp()/1.7));
             dropItem(entity, Material.COOKED_PORKCHOP, 2);
         }
 
         if (entity.getType() == EntityType.FOX) {
             event.getDrops().clear();
-            event.setDroppedExp(event.getDroppedExp()/2);
+            event.setDroppedExp((int) (event.getDroppedExp()/1.7));
             dropItem(entity, Material.SWEET_BERRIES, 2);
         }
 
         if (entity.getType() == EntityType.SHEEP) {
             event.getDrops().remove(new ItemStack(Material.MUTTON, 1));
             event.getDrops().remove(new ItemStack(Material.MUTTON, 2));
-            event.setDroppedExp(event.getDroppedExp()/2);
+            event.setDroppedExp((int) (event.getDroppedExp()/1.7));
             dropItem(entity, Material.COOKED_MUTTON, 2);
         }
 
         if (entity.getType() == EntityType.TURTLE) {
-            event.setDroppedExp(event.getDroppedExp()/2);
+            event.setDroppedExp((int) (event.getDroppedExp()/1.7));
             if (dropRare(0.05)) {  dropItem(entity, Material.TURTLE_HELMET,1); }
         }
 
