@@ -70,8 +70,9 @@ public class ZombieBossEvents implements Listener {
             }
         }
 
+        // Not a zombie boss event but didnt wanna make yet another event handler
         if (entity instanceof Creeper) {
-            if (event.getCause().equals(EntityDamageEvent.DamageCause.LIGHTNING)) {
+            if (event.getCause().equals(EntityDamageEvent.DamageCause.LIGHTNING) || event.getCause().equals(EntityDamageEvent.DamageCause.FIRE) || event.getCause().equals(EntityDamageEvent.DamageCause.FIRE_TICK)) {
                 event.setDamage(0);
             }
         }
