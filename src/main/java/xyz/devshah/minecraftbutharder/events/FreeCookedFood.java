@@ -1,6 +1,7 @@
 package xyz.devshah.minecraftbutharder.events;
 
 import org.bukkit.Material;
+import org.bukkit.World;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.event.EventHandler;
@@ -103,7 +104,9 @@ public class FreeCookedFood implements Listener {
         }
 
         if (entity.getType() == EntityType.ENDERMAN) {
-            event.getDrops().clear();
+            if (!(entity.getWorld().getEnvironment().equals(World.Environment.THE_END))) {
+                event.getDrops().clear();
+            }
         }
     }
 
