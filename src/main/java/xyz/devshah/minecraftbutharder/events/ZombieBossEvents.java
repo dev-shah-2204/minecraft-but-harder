@@ -66,7 +66,13 @@ public class ZombieBossEvents implements Listener {
 
         if (entity.getCustomName() == "Undead King" && entity instanceof Zombie) {
             if (event.getCause() == EntityDamageEvent.DamageCause.SUFFOCATION) {
-                event.setCancelled(true);
+                event.setDamage(0);
+            }
+        }
+
+        if (entity instanceof Creeper) {
+            if (event.getCause().equals(EntityDamageEvent.DamageCause.LIGHTNING)) {
+                event.setDamage(0);
             }
         }
     }
