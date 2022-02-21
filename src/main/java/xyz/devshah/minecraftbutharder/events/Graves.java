@@ -18,10 +18,6 @@ public class Graves implements Listener {
     @EventHandler
     public void onPlayerDeath(EntityDeathEvent event) {
         if (event.getEntity() instanceof Player) {
-            if (event.getDrops().size() == 0) {
-                return;
-            }
-
             Player player = (Player) event.getEntity();
 
             double x = player.getLocation().getX();
@@ -31,13 +27,17 @@ public class Graves implements Listener {
             player.sendMessage("§aYour grave is at " + String.format("%.0f", x) + "/" + String.format("%.0f", y) + "/" + String.format("%.0f", z));
 
             Block deathBlock = player.getWorld().getBlockAt(player.getLocation());
-            deathBlock.breakNaturally();
+            if (deathBlock.getType() != Material.AIR) {
+                deathBlock.breakNaturally();
+            }
             deathBlock.setType(Material.CHEST);
             Chest left = (Chest) deathBlock.getState();
             left.setCustomName(player.getDisplayName() + "'s grave 1");
 
             Block deathBlock2 = player.getWorld().getBlockAt(player.getLocation().add(1, 0, 0));
-            deathBlock2.breakNaturally();
+            if (deathBlock2.getType() != Material.AIR) {
+                deathBlock2.breakNaturally();
+            }
             deathBlock2.setType(Material.CHEST);
             Chest right = (Chest) deathBlock2.getState();
             right.setCustomName(player.getDisplayName() + "'s grave 2");
