@@ -39,8 +39,8 @@ public class Boss implements CommandExecutor {
                     sender.sendMessage("§cOnly server operators can spawn the boss");
                     return true;
                 }
-                if (((Player) sender).getLevel() < 50) {
-                    sender.sendMessage("§cYou need to be alteast level 50 to spawn the boss");
+                if (((Player) sender).getLevel() < 70) {
+                    sender.sendMessage("§cYou need to be alteast level 70 to spawn the boss");
                     return true;
                 }
                 else {
@@ -65,7 +65,7 @@ public class Boss implements CommandExecutor {
                 if (entity instanceof Chicken) {
                     List<Entity> entities = entity.getPassengers();
                     for (Entity otherEntity : entities ) {
-                        if (otherEntity == (Entity) zombie) {
+                        if (otherEntity == zombie) {
                             entity.removePassenger(otherEntity);
                         }
                     }
