@@ -44,7 +44,7 @@ public final class MinecraftButHarder extends JavaPlugin {
         manager.registerEvents(new NewPlayerJoinEvent(), this);
         manager.registerEvents(new StrongMobs(), this);
         manager.registerEvents(new ZombieBossEvents(this), this);
-        manager.registerEvents(new ExpConcession(), this);
+        manager.registerEvents(new ExpConcession(this), this);
 
         System.out.println("§a[MinecraftButHarder] events loaded");
 
