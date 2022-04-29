@@ -40,7 +40,9 @@ public class GiveCustomItems implements CommandExecutor {
                     sender.sendMessage("§cPlease provide a player name");
                     return true;
                 }
-                player = (Player) sender;
+                else {
+                    player = (Player) sender;
+                }
             }
 
             if (args.length == 2) {
@@ -57,96 +59,94 @@ public class GiveCustomItems implements CommandExecutor {
                 sender.sendMessage("Gave 1 [" + args[0]+ "] to " + player.getDisplayName());
                 return true;
             }
-            if (args[0].equalsIgnoreCase("forbiddenImperviousChestplate")) {
+            else if (args[0].equalsIgnoreCase("forbiddenImperviousChestplate")) {
                 giveItem(player, Armor.forbiddenImperviousChestplate);
                 sender.sendMessage("Gave 1 [" + args[0]+ "] to " + player.getDisplayName());
                 return true;
             }
-            if (args[0].equalsIgnoreCase("forbiddenImperviousLeggings")) {
+            else if (args[0].equalsIgnoreCase("forbiddenImperviousLeggings")) {
                 giveItem(player, Armor.forbiddenImperviousLeggings);
                 sender.sendMessage("Gave 1 [" + args[0]+ "] to " + player.getDisplayName());
                 return true;
             }
-            if (args[0].equalsIgnoreCase("forbiddenImperviousHelmet")) {
+            else if (args[0].equalsIgnoreCase("forbiddenImperviousHelmet")) {
                 giveItem(player, Armor.forbiddenImperviousHelmet);
                 sender.sendMessage("Gave 1 [" + args[0]+ "] to " + player.getDisplayName());
                 return true;
             }
-            if (args[0].equalsIgnoreCase("forbiddenImperviousBoots")) {
+            else if (args[0].equalsIgnoreCase("forbiddenImperviousBoots")) {
                 giveItem(player, Armor.forbiddenImperviousBoots);
                 sender.sendMessage("Gave 1 [" + args[0]+ "] to " + player.getDisplayName());
                 return true;
             }
-            if (args[0].equalsIgnoreCase("devilHelmet")) {
+            else if (args[0].equalsIgnoreCase("devilHelmet")) {
                 giveItem(player, Armor.beelzebubHelmet);
                 sender.sendMessage("Gave 1 [" + args[0]+ "] to " + player.getDisplayName());
                 return true;
             }
-            if (args[0].equalsIgnoreCase("devilChestplate")) {
+            else if (args[0].equalsIgnoreCase("devilChestplate")) {
                 giveItem(player, Armor.asmodiusChestplate);
                 sender.sendMessage("Gave 1 [" + args[0]+ "] to " + player.getDisplayName());
                 return true;
             }
-            if (args[0].equalsIgnoreCase("devilLeggings")) {
+            else if (args[0].equalsIgnoreCase("devilLeggings")) {
                 giveItem(player, Armor.mammonLeggings);
                 sender.sendMessage("Gave 1 [" + args[0]+ "] to " + player.getDisplayName());
                 return true;
             }
-            if (args[0].equalsIgnoreCase("devilBoots")) {
+            else if (args[0].equalsIgnoreCase("devilBoots")) {
                 giveItem(player, Armor.belphegorBoots);
                 sender.sendMessage("Gave 1 [" + args[0]+ "] to " + player.getDisplayName());
                 return true;
             }
 
             // Weapons
-            if (args[0].equalsIgnoreCase("ancientVenomSword")) {
+            else if (args[0].equalsIgnoreCase("ancientVenomSword")) {
                 giveItem(player, Weapons.venomBlade);
                 sender.sendMessage("Gave 1 [" + args[0]+ "] to " + player.getDisplayName());
                 return true;
             }
-            if (args[0].equalsIgnoreCase("asgardAxe")) {
+            else if (args[0].equalsIgnoreCase("asgardAxe")) {
                 giveItem(player, Weapons.asgardAxe);
                 sender.sendMessage("Gave 1 [" + args[0]+ "] to " + player.getDisplayName());
                 return true;
             }
-            if (args[0].equalsIgnoreCase("excalibur")) {
+            else if (args[0].equalsIgnoreCase("excalibur")) {
                 giveItem(player, Weapons.excalibur);
                 sender.sendMessage("Gave 1 [" + args[0]+ "] to " + player.getDisplayName());
                 return true;
             }
-            if (args[0].equalsIgnoreCase("claudiusAegis")) {
+            else if (args[0].equalsIgnoreCase("claudiusAegis")) {
                 giveItem(player, Weapons.claudiusAegis);
                 sender.sendMessage("Gave 1 [" + args[0]+ "] to " + player.getDisplayName());
                 return true;
             }
-            if (args[0].equalsIgnoreCase("devilStick")) {
+            else if (args[0].equalsIgnoreCase("devilStick")) {
                 giveItem(player, Weapons.devilStick);
                 sender.sendMessage("Gave 1 [" + args[0]+ "] to " + player.getDisplayName());
                 return true;
             }
 
             // Tools
-            if (args[0].equalsIgnoreCase("etherPickaxe")) {
+            else if (args[0].equalsIgnoreCase("etherPickaxe")) {
                 giveItem(player, Items.etherealPickaxe);
                 sender.sendMessage("Gave 1 [" + args[0]+ "] to " + player.getDisplayName());
                 return true;
             }
-            if (args[0].equalsIgnoreCase("servantShovel")) {
+            else if (args[0].equalsIgnoreCase("servantShovel")) {
                 giveItem(player, Items.servantShovel);
                 sender.sendMessage("Gave 1 [" + args[0]+ "] to " + player.getDisplayName());
                 return true;
             }
-            if (args[0].equalsIgnoreCase("minerFriend")) {
+            else if (args[0].equalsIgnoreCase("minerFriend")) {
                 giveItem(player, Items.minerFriend);
                 sender.sendMessage("Gave 1 [" + args[0]+ "] to " + player.getDisplayName());
-                return true;
             }
 
             else {
                 sender.sendMessage("§cUnknown item '" + args[0] + "'");
-                return true;
             }
-
+            return true;
 
 
         }
