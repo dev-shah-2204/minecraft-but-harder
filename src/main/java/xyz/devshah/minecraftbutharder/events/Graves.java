@@ -8,13 +8,17 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDeathEvent;
+import org.bukkit.event.player.PlayerRespawnEvent;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.ListIterator;
 
 public class Graves implements Listener {
+    private final HashMap<String, Integer> levels = new HashMap<>();
+
     @EventHandler
     public void onPlayerDeath(EntityDeathEvent event) {
         if (event.getEntity() instanceof Player) {
@@ -25,6 +29,7 @@ public class Graves implements Listener {
             double z = player.getLocation().getZ();
 
             player.sendMessage("§aYour grave is at " + String.format("%.0f", x) + "/" + String.format("%.0f", y) + "/" + String.format("%.0f", z));
+            System.out.println("§a" + player.getDisplayName() + "'s grave is at " + String.format("%.0f", x) + "/" + String.format("%.0f", y) + "/" + String.format("%.0f", z));
 
             Block deathBlock = player.getWorld().getBlockAt(player.getLocation());
             if (deathBlock.getType() != Material.AIR) {
@@ -48,7 +53,6 @@ public class Graves implements Listener {
             event.getDrops().clear();
 
             int i = 0;
-            System.out.println(items.size());
 
             for (ItemStack item : items) {
                 if (i <= 26) {
@@ -60,6 +64,18 @@ public class Graves implements Listener {
                 if (i != items.size()) i++;
             }
 
+            event.setDroppedExp(0);
+            levels.put(player.getDisplayName(), player.getLevel());
+
+        }
+    }
+
+    @EventHandler
+    public void onPlayerRespawn(PlayerRespawnEvent event) {
+        Player player = event.getPlayer();
+        if (levels.containsKey(player.getDisplayName())) {
+            player.setLevel(levels.get(player.getDisplayName()));
+            levels.remove(player.getDisplayName());
         }
     }
 }
