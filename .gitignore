@@ -110,3 +110,8 @@ buildNumber.properties
 
 # Common working directory
 run/
+
+# Atom
+.classpath
+.project
+.settings
