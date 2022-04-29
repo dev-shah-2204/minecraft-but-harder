@@ -87,7 +87,7 @@ public class Basic implements CommandExecutor {
                 double y = player.getLocation().getY();
                 double z = player.getLocation().getZ();
 
-                player.chat("I'm at " + String.format("%.0f", x) + "/" + String.format("%.0f", y) + "/" + String.format("%.0f", z));
+                player.chat("§2I'm at " + String.format("%.0f", x) + "/" + String.format("%.0f", y) + "/" + String.format("%.0f", z));
             }
 
             else {
