@@ -1,7 +1,7 @@
 name: MinecraftButHarder
 version: ${project.version}
 main: xyz.devshah.minecraftbutharder.MinecraftButHarder
-api-version: 1.18
+api-version: 1.17
 authors: [ DevShah ]
 description: Plugin to make Vanilla minecraft difficult to play with some added bonuses
 website: https://projects.devshah.xyz/minecraft-but-harder
