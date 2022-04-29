@@ -52,7 +52,7 @@ public class ExpRewards implements Listener {
         }
 
         if (newLevel == 5) {
-            server.broadcastMessage(player.getDisplayName() + "got an enchanted Golden Pickaxe!");
+            server.broadcastMessage(player.getDisplayName() + " got an enchanted Golden Pickaxe!");
             ItemStack pick = new ItemStack(Material.GOLDEN_PICKAXE, 1);
             pick.addEnchantment(Enchantment.DURABILITY, 2);
             pick.addEnchantment(Enchantment.DIG_SPEED, 3);
