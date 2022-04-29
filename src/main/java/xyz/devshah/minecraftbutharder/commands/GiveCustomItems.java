@@ -52,29 +52,103 @@ public class GiveCustomItems implements CommandExecutor {
             }
 
             // Armor
-            if (args[0].equalsIgnoreCase("oldSafetyHelmet")) giveItem(player, Armor.oldSafetyHelmet);
-            if (args[0].equalsIgnoreCase("imperviousChestplate")) giveItem(player, Armor.forbiddenImperviousChestplate);
-            if (args[0].equalsIgnoreCase("imperviousLeggings")) giveItem(player, Armor.forbiddenImperviousLeggings);
-            if (args[0].equalsIgnoreCase("imperviousHelmet")) giveItem(player, Armor.forbiddenImperviousHelmet);
-            if (args[0].equalsIgnoreCase("imperviousBoots")) giveItem(player, Armor.forbiddenImperviousBoots);
-            if (args[0].equalsIgnoreCase("devilHelmet")) giveItem(player, Armor.beelzebubHelmet);
-            if (args[0].equalsIgnoreCase("devilChestplate")) giveItem(player, Armor.asmodiusChestplate);
-            if (args[0].equalsIgnoreCase("devilLeggings")) giveItem(player, Armor.mammonLeggings);
-            if (args[0].equalsIgnoreCase("devilBoots")) giveItem(player, Armor.belphegorBoots);
+            if (args[0].equalsIgnoreCase("oldSafetyHelmet")) {
+                giveItem(player, Armor.oldSafetyHelmet);
+                sender.sendMessage("Gave 1 [" + args[0]+ "] to " + player.getDisplayName());
+                return true;
+            }
+            if (args[0].equalsIgnoreCase("forbiddenImperviousChestplate")) {
+                giveItem(player, Armor.forbiddenImperviousChestplate);
+                sender.sendMessage("Gave 1 [" + args[0]+ "] to " + player.getDisplayName());
+                return true;
+            }
+            if (args[0].equalsIgnoreCase("forbiddenImperviousLeggings")) {
+                giveItem(player, Armor.forbiddenImperviousLeggings);
+                sender.sendMessage("Gave 1 [" + args[0]+ "] to " + player.getDisplayName());
+                return true;
+            }
+            if (args[0].equalsIgnoreCase("forbiddenImperviousHelmet")) {
+                giveItem(player, Armor.forbiddenImperviousHelmet);
+                sender.sendMessage("Gave 1 [" + args[0]+ "] to " + player.getDisplayName());
+                return true;
+            }
+            if (args[0].equalsIgnoreCase("forbiddenImperviousBoots")) {
+                giveItem(player, Armor.forbiddenImperviousBoots);
+                sender.sendMessage("Gave 1 [" + args[0]+ "] to " + player.getDisplayName());
+                return true;
+            }
+            if (args[0].equalsIgnoreCase("devilHelmet")) {
+                giveItem(player, Armor.beelzebubHelmet);
+                sender.sendMessage("Gave 1 [" + args[0]+ "] to " + player.getDisplayName());
+                return true;
+            }
+            if (args[0].equalsIgnoreCase("devilChestplate")) {
+                giveItem(player, Armor.asmodiusChestplate);
+                sender.sendMessage("Gave 1 [" + args[0]+ "] to " + player.getDisplayName());
+                return true;
+            }
+            if (args[0].equalsIgnoreCase("devilLeggings")) {
+                giveItem(player, Armor.mammonLeggings);
+                sender.sendMessage("Gave 1 [" + args[0]+ "] to " + player.getDisplayName());
+                return true;
+            }
+            if (args[0].equalsIgnoreCase("devilBoots")) {
+                giveItem(player, Armor.belphegorBoots);
+                sender.sendMessage("Gave 1 [" + args[0]+ "] to " + player.getDisplayName());
+                return true;
+            }
 
             // Weapons
-            if (args[0].equalsIgnoreCase("ancientVenomSword")) giveItem(player, Weapons.venomBlade);
-            if (args[0].equalsIgnoreCase("asgardAxe")) giveItem(player, Weapons.asgardAxe);
-            if (args[0].equalsIgnoreCase("excalibur")) giveItem(player, Weapons.excalibur);
-            if (args[0].equalsIgnoreCase("claudiusAegis")) giveItem(player, Weapons.claudiusAegis);
-            if (args[0].equalsIgnoreCase("devilStick")) giveItem(player, Weapons.devilStick);
+            if (args[0].equalsIgnoreCase("ancientVenomSword")) {
+                giveItem(player, Weapons.venomBlade);
+                sender.sendMessage("Gave 1 [" + args[0]+ "] to " + player.getDisplayName());
+                return true;
+            }
+            if (args[0].equalsIgnoreCase("asgardAxe")) {
+                giveItem(player, Weapons.asgardAxe);
+                sender.sendMessage("Gave 1 [" + args[0]+ "] to " + player.getDisplayName());
+                return true;
+            }
+            if (args[0].equalsIgnoreCase("excalibur")) {
+                giveItem(player, Weapons.excalibur);
+                sender.sendMessage("Gave 1 [" + args[0]+ "] to " + player.getDisplayName());
+                return true;
+            }
+            if (args[0].equalsIgnoreCase("claudiusAegis")) {
+                giveItem(player, Weapons.claudiusAegis);
+                sender.sendMessage("Gave 1 [" + args[0]+ "] to " + player.getDisplayName());
+                return true;
+            }
+            if (args[0].equalsIgnoreCase("devilStick")) {
+                giveItem(player, Weapons.devilStick);
+                sender.sendMessage("Gave 1 [" + args[0]+ "] to " + player.getDisplayName());
+                return true;
+            }
 
             // Tools
-            if (args[0].equalsIgnoreCase("etherPickaxe")) giveItem(player, Items.etherealPickaxe);
-            if (args[0].equalsIgnoreCase("servantShovel")) giveItem(player, Items.servantShovel);
-            if (args[0].equalsIgnoreCase("minerFriend")) giveItem(player, Items.minerFriend);
+            if (args[0].equalsIgnoreCase("etherPickaxe")) {
+                giveItem(player, Items.etherealPickaxe);
+                sender.sendMessage("Gave 1 [" + args[0]+ "] to " + player.getDisplayName());
+                return true;
+            }
+            if (args[0].equalsIgnoreCase("servantShovel")) {
+                giveItem(player, Items.servantShovel);
+                sender.sendMessage("Gave 1 [" + args[0]+ "] to " + player.getDisplayName());
+                return true;
+            }
+            if (args[0].equalsIgnoreCase("minerFriend")) {
+                giveItem(player, Items.minerFriend);
+                sender.sendMessage("Gave 1 [" + args[0]+ "] to " + player.getDisplayName());
+                return true;
+            }
 
-            return true;
+            else {
+                sender.sendMessage("§cUnknown item '" + args[0] + "'");
+                return true;
+            }
+
+
+
         }
 
         return true;
