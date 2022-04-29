@@ -29,7 +29,7 @@ public class NewPlayerJoinEvent implements Listener {
 
             pages.add("Hello, welcome to the server! This server has a custom plugin called \"Minecraft But Harder\" and I'll tell you what it does!");
             pages.add("This plugin makes the game more difficult to play, the zombies and skeletons are really strong, the creepers are a lot faster and the spiders are invisible!");
-            pages.add("Every 5 levels, you'll get an exciting reward. Custom Enchants starting from level 10 like Night Vision, Iron Army, Beastly Aura and many more!");
+            pages.add("Every few levels, you'll get an exciting reward. Custom Enchants starting from level 10 like Night Vision, Iron Army, Beastly Aura and many more!");
             pages.add("Endermen don't drop Ender Pearls, you have to defeat the boss to get 25 Eyes of Ender and 64 Ender Pearls and a really cool combat set");
             pages.add("For more information visit \nhttps://github.com/dev-shah-2204/minecraft-but-harder \nor DM me on discord \nStatTrakDiamondSword#5493");
 
