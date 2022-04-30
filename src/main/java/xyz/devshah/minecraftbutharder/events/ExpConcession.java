@@ -45,6 +45,7 @@ public class ExpConcession implements Listener {
                 int level = player.getLevel();
 
                 if (level % 5 == 0) {
+                    // Else players might keep getting free rewards everytime they use anvil
                     level += 1;
                 }
                 levels.put(player.getDisplayName(), level);
