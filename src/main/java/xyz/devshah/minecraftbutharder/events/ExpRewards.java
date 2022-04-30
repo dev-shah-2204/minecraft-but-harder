@@ -1,30 +1,19 @@
 package xyz.devshah.minecraftbutharder.events;
 
-import org.bukkit.*;
+import org.bukkit.Material;
+import org.bukkit.Server;
+import org.bukkit.Sound;
 import org.bukkit.enchantments.Enchantment;
-import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
-import org.bukkit.entity.Vex;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerLevelChangeEvent;
-import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
-import org.bukkit.potion.Potion;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
-
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
 import xyz.devshah.minecraftbutharder.items.Armor;
 import xyz.devshah.minecraftbutharder.items.Items;
 import xyz.devshah.minecraftbutharder.items.Weapons;
-
-import java.io.Console;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
 
 public class ExpRewards implements Listener {
 
