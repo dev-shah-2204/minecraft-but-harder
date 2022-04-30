@@ -41,18 +41,24 @@ public class ExpConcession implements Listener {
     public void onInventoryClick(InventoryClickEvent event) {
         if (event.getInventory() instanceof AnvilInventory) {
             Player player = (Player) event.getWhoClicked();
-
             if (!(levels.containsKey(player.getDisplayName()))) {
-                levels.put(player.getDisplayName(), player.getLevel());
+                int level = player.getLevel();
+
+                if (level % 5 == 0) {
+                    level += 1;
+                }
+                levels.put(player.getDisplayName(), level);
             }
 
-            if (event.getRawSlot() != 2) player.setLevel(201);
+            if (event.getRawSlot() != 2) {
+                player.setLevel(201);
+            }
 
             if (event.getRawSlot() == 2) {
-                int level = levels.get(player.getDisplayName());
+                int og_level = levels.get(player.getDisplayName());
                 levels.remove(player);
 
-                Bukkit.getServer().getScheduler().runTaskLater(plugin, () -> {player.setLevel(level);}, 1);
+                Bukkit.getServer().getScheduler().runTaskLater(plugin, () -> {player.setLevel(og_level);}, 1);
 
             }
         }
