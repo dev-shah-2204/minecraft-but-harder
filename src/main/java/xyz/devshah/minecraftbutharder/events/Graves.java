@@ -29,7 +29,14 @@ public class Graves implements Listener {
             Player player = (Player) event.getEntity();
 
             event.setDroppedExp(0);
-            levels.put(player.getDisplayName(), player.getLevel());
+            int level = player.getLevel();
+
+            if (level % 5 == 0) {
+                // Else players might keep getting free rewards everytime they respawn
+                level += 1;
+            }
+
+            levels.put(player.getDisplayName(), level);
 
             if (event.getDrops().size() > 0) {
                 double x = player.getLocation().getX();
