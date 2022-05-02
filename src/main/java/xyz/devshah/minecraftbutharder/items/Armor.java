@@ -38,16 +38,15 @@ public class Armor {
 
     private static void createNightCap() {
         ItemStack nightVisionHelmet = new ItemStack(Material.LEATHER_HELMET);
-        nightVisionHelmet.addUnsafeEnchantment(Enchantment.VANISHING_CURSE, 1);
-        nightVisionHelmet.addUnsafeEnchantment(Enchantment.DURABILITY, 2);
-        ItemMeta meta = nightVisionHelmet.getItemMeta();
-        meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
-        meta.setDisplayName("§8Old Safety Helmet");
 
+        nightVisionHelmet.addEnchantment(Enchantment.VANISHING_CURSE, 1);
+        nightVisionHelmet.addEnchantment(Enchantment.DURABILITY, 2);
+
+        ItemMeta meta = nightVisionHelmet.getItemMeta();
         ArrayList<String> lore = new ArrayList<>();
+
+        meta.setDisplayName("§8Old Safety Helmet");
         lore.add("§6Night Vision");
-        lore.add("§6Unbreaking II");
-        lore.add("§cCurse of Vanishing");
         meta.setLore(lore);
         nightVisionHelmet.setItemMeta(meta);
 
