@@ -20,7 +20,7 @@ Cooked Porkchop instead of Porkchop, Steak instead of Beef, Cooked Mutton instea
 There are a total of 4 commands:
 - heal (op only)
 - feed (op only)
-- cords
+- coordinates
 - spawnboss (op only)
 - givecustom (op only)
 
@@ -32,9 +32,9 @@ Usage: /heal [player]
 Description: Feeds a player
 Usage: /feed [player]
 
-### cords
+### coordinates
 Description: Get your cords in chat
-Usage: /cords [player]
+Usage: /coordinates [player]
 Note: Only ops can get other players' cords. Everyone can get their own cords using `/cords`
 
 ### spawnboss
