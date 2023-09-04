@@ -18,6 +18,7 @@ public class ExpConcession implements Listener {
 
     private final HashMap<String, Integer> levels = new HashMap<>();
 
+    // SOMEHOW I STARTED GAINING LEVELS ON ENCHANTING AFTER ADDING THE onIventoryClose EventHandler.
     @EventHandler
     public void onPlayerEnchantItem(EnchantItemEvent event) {
         // Don't ask me how, but this logic works flawlessly.
