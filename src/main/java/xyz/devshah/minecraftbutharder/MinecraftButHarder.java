@@ -24,7 +24,7 @@ public final class MinecraftButHarder extends JavaPlugin {
 
         getCommand("heal").setExecutor(basic);
         getCommand("feed").setExecutor(basic);
-        getCommand("cords").setExecutor(basic);
+        getCommand("coordinates").setExecutor(basic);
         getCommand("spawnboss").setExecutor(boss);
 
         getCommand("givecustom").setExecutor(customItems);

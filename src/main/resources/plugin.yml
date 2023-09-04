@@ -10,7 +10,7 @@ commands:
     description: Heal a player
   feed:
     description: Feed a player
-  cords:
+  coordinates:
     description: Get the cords of a player
   spawnboss:
     description: Spawn the Undead King

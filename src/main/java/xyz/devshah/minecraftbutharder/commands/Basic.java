@@ -74,7 +74,7 @@ public class Basic implements CommandExecutor {
         }
 
          // Cords command
-        else if (cmd.getName().equalsIgnoreCase("cords")) {
+        else if (cmd.getName().equalsIgnoreCase("coordinates")) {
             Player player;
             if (args.length == 0) {
                 if (!(sender instanceof Player)) {
