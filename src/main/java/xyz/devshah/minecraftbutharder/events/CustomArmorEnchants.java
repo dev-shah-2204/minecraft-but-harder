@@ -82,8 +82,15 @@ public class CustomArmorEnchants implements Listener {
             // Helmet Enchants
             if (helmet != null && helmet.getItemMeta() != null && helmet.getItemMeta().getLore() != null) {
                 // Tracker
-                if (helmet.getItemMeta().getLore().contains("§6Tracker") && damager instanceof LivingEntity) {
-                    ((LivingEntity) damager).addPotionEffect(new PotionEffect(PotionEffectType.GLOWING, 3*20, 0));
+
+                if (helmet.getItemMeta().getLore().contains("§6Tracker")) {
+                    if (damager instanceof Arrow && ((Arrow) damager).getShooter() instanceof LivingEntity) {
+                        LivingEntity shooter = (LivingEntity) ((Arrow) damager).getShooter();
+                        shooter.addPotionEffect(new PotionEffect(PotionEffectType.GLOWING, 3*20, 0));
+                    }
+                    else if (damager instanceof LivingEntity) {
+                        ((LivingEntity) damager).addPotionEffect(new PotionEffect(PotionEffectType.GLOWING, 3 * 20, 0));
+                    }
                 }
             }
 
@@ -122,6 +129,7 @@ public class CustomArmorEnchants implements Listener {
                 if (chestplate.getItemMeta().getLore().contains("§6Devil's Invitation")) {
                     Random random = new Random();
                     double r = random.nextDouble();
+
                     if (r <= 0.30 && damager instanceof LivingEntity) {
                         ((LivingEntity) damager).addPotionEffect(new PotionEffect(PotionEffectType.WEAKNESS, 5*20, 1));
                         ((LivingEntity) damager).addPotionEffect(new PotionEffect(PotionEffectType.WITHER, 3*20, 0));
