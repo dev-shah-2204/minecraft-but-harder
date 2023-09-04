@@ -78,7 +78,7 @@
             <version>1.7.2</version>
             <scope>system</scope>
             <systemPath>
-                F:/Programming/java/MinecraftButHarder/ArmorEquipEvent-1.7.2.jar
+                E:/Programming/java/MinecraftButHarder/ArmorEquipEvent-1.7.2.jar
             </systemPath>
         </dependency>
     </dependencies>
