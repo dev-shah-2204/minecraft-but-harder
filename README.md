@@ -47,6 +47,5 @@ Usage: /givecustom \<item\> [player]
 
 <br><br>
 ***IMPORTANT:***<br>
-- I am not responsible for coming up with the idea for this plugin. It was my friend's idea. He made a similar plugin a long time ago for 1.12 and 1.16.
 
 - If you wish to edit this code, you'll need to change the systemPath to where you save the ArmorEqupEvent-1.7.2.jar file on line 81 of the pom.xml file. 
