@@ -2,8 +2,10 @@ package xyz.devshah.minecraftbutharder.events;
 
 import org.bukkit.Material;
 import org.bukkit.World;
+import org.bukkit.entity.Chicken;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
+import org.bukkit.entity.Zombie;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.enchantment.EnchantItemEvent;
@@ -28,6 +30,17 @@ public class FreeCookedFood implements Listener {
     @EventHandler
     public void onEntityDeath(EntityDeathEvent event) {
         Entity entity = event.getEntity();
+
+        if (entity.getType() == EntityType.ZOMBIE) {
+            Zombie zombie = (Zombie) entity;
+            if (!(zombie.isAdult())) {
+                Entity vehicle = zombie.getVehicle();
+
+                if (vehicle.getType() == EntityType.CHICKEN) {
+                    vehicle.remove();
+                }
+            }
+        }
 
         if (entity.getType() == EntityType.COW) {
             event.getDrops().clear();
@@ -115,7 +128,7 @@ public class FreeCookedFood implements Listener {
     public void onExpChange(PlayerExpChangeEvent event) {
         if (event.getAmount() > 0) {
             // It should be a little easier to get exp points than it is.
-            event.setAmount((int) (event.getAmount() * 1.7));
+            event.setAmount((int) (event.getAmount() * 1.2));
         }
     }
 
