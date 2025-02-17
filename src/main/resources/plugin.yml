@@ -12,6 +12,7 @@ commands:
     description: Feed a player
   coordinates:
     description: Get the cords of a player
+    aliases: [coords, position]
   spawnboss:
     description: Spawn the Undead King
   givecustom:
