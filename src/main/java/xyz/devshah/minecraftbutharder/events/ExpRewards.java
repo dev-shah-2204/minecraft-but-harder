@@ -63,47 +63,47 @@ public class ExpRewards implements Listener {
             giveItem(player, Armor.forbiddenImperviousChestplate);
         }
 
-        if (newLevel == 30) {
+        if (newLevel == 25) {
             server.broadcastMessage(player.getDisplayName() + " got the §4Axe of the Asgardian§r!");
             giveItem(player, Weapons.asgardAxe);
         }
 
-        if (newLevel == 35) {
+        if (newLevel == 30) {
             server.broadcastMessage(player.getDisplayName() + " got the §9Forbidden Impervious Leggings§r!");
             giveItem(player, Armor.forbiddenImperviousLeggings);
         }
 
-        if (newLevel == 45) {
+        if (newLevel == 35) {
             server.broadcastMessage(player.getDisplayName() + " got the §eEthereal Pickaxe§r!");
             giveItem(player, Items.etherealPickaxe);
         }
 
-        if (newLevel == 50) {
+        if (newLevel == 40) {
             server.broadcastMessage(player.getDisplayName() + " got the §9Forbidden Impervious Helmet§r!");
             giveItem(player, Armor.forbiddenImperviousHelmet);
         }
 
-        if (newLevel == 60) {
+        if (newLevel == 45) {
             server.broadcastMessage(player.getDisplayName() + " got the §cExcalibur§r!");
             giveItem(player, Weapons.excalibur);
         }
 
-        if (newLevel == 65) {
+        if (newLevel == 50) {
             server.broadcastMessage(player.getDisplayName() + " got the §9Forbidden Impervious Boots§r!");
             giveItem(player, Armor.forbiddenImperviousBoots);
         }
 
-        if (newLevel == 70) {
+        if (newLevel == 55) {
             server.broadcastMessage(player.getDisplayName() + " got the §cClaudius' Aegis§r!");
             giveItem(player, Weapons.claudiusAegis);
         }
 
-        if (newLevel == 80) {
+        if (newLevel == 60) {
             server.broadcastMessage(player.getDisplayName() + " got the §eServant's Shovel§r!");
             giveItem(player, Items.servantShovel);
         }
 
-        if (newLevel == 90) {
+        if (newLevel == 65) {
             server.broadcastMessage(player.getDisplayName() + " got the §eMiner's Best Friend§r!");
             giveItem(player, Items.minerFriend);
         }
