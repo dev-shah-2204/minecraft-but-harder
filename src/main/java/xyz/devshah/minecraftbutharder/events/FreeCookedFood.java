@@ -2,7 +2,6 @@ package xyz.devshah.minecraftbutharder.events;
 
 import org.bukkit.Material;
 import org.bukkit.World;
-import org.bukkit.entity.Chicken;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Zombie;

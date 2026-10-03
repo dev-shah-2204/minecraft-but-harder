@@ -4,7 +4,6 @@ package xyz.devshah.minecraftbutharder.events;
 import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.block.Chest;
-import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -60,14 +59,16 @@ public class ZombieBossEvents implements Listener {
         }
     }
 
+
     @EventHandler
     public void onEntityDamage(EntityDamageEvent event) {
         Entity entity = event.getEntity();
 
-        if (entity.getCustomName() == "Undead King" && entity instanceof Zombie) {
-            if (event.getCause() == EntityDamageEvent.DamageCause.SUFFOCATION) {
+        if (entity instanceof Zombie && "Undead King".equals(entity.getCustomName())) {
+            if (event.getCause() == EntityDamageEvent.DamageCause.SUFFOCATION || event.getCause() == EntityDamageEvent.DamageCause.CRAMMING) {
                 event.setDamage(0);
             }
+
         }
 
         // Not a zombie boss event but didnt wanna make yet another event handler
@@ -87,11 +88,28 @@ public class ZombieBossEvents implements Listener {
             if (entity.getCustomName().equalsIgnoreCase("Undead King") && damager instanceof IronGolem && entity instanceof Zombie) {
                 event.setDamage(2); // Almost immune to Iron Golems
             }
+            Random random = new Random();
+            double r = random.nextDouble();
+
+            if (entity.getCustomName().equalsIgnoreCase("Undead King") && damager instanceof Arrow && ((Arrow) damager).getShooter() instanceof Player && entity instanceof Zombie) {
+                Player shooter = (Player) ((Arrow) damager).getShooter();
+                ((Zombie) entity).setTarget(shooter);
+                event.setCancelled(true); // Players might have power 22 or stronger bows from skeletons
+                shooter.playSound(shooter.getLocation(), Sound.ITEM_SHIELD_BLOCK, 1, 1);
+
+                if (r <= 0.20) {
+                    spawnAirGuardian(entity, shooter);
+                    spawnAirGuardian(entity, shooter);
+                }
+
+                if (r <= 0.30) {
+                    spawnVexMinion(entity, shooter);
+                    spawnVexMinion(entity, shooter);
+                }
+            }
 
             if (entity.getCustomName().equalsIgnoreCase("Undead King") && damager instanceof Player && entity instanceof Zombie) {
                 ((Zombie) entity).setTarget((LivingEntity) event.getDamager());
-                Random random = new Random();
-                double r = random.nextDouble();
 
                 if (r <= 0.20) {
                     spawnAirGuardian(entity, (Player) damager);

@@ -27,7 +27,6 @@ public class ExpRewards implements Listener {
 
     @EventHandler
     public void onPlayerLevelUp(PlayerLevelChangeEvent event) {
-        int oldLevel = event.getOldLevel();
         int newLevel = event.getNewLevel();
         Player player = event.getPlayer();
         Server server = player.getServer();

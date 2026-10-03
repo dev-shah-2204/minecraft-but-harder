@@ -85,7 +85,7 @@ public class StrongMobs implements Listener {
 
         int avgLevel = 0;
         if (playerCount != 0) {
-            avgLevel = (int) (totalLevel / playerCount);
+            avgLevel = totalLevel / playerCount;
         }
 
 
@@ -103,7 +103,7 @@ public class StrongMobs implements Listener {
                     addEquipment(entity, avgLevel, dHelmet, dChestplate, dLeggings, dBoots, iSword);
                 }
 
-                int effectAmplifier = ((int) (avgLevel / 6));
+                int effectAmplifier = avgLevel / 6;
                 if (effectAmplifier > 0) {
                     effectAmplifier -= 1;
                 }
@@ -133,10 +133,9 @@ public class StrongMobs implements Listener {
         }
 
         if (entity instanceof Skeleton) {
-            Skeleton skeleton = (Skeleton) entity;
             double r = random.nextDouble();
 
-            bow.addUnsafeEnchantment(Enchantment.ARROW_DAMAGE, ((int) (avgLevel / 4)));
+            bow.addUnsafeEnchantment(Enchantment.ARROW_DAMAGE, avgLevel / 4);
 
             if (r <= 0.45) { addEquipment(entity, avgLevel, lHelmet, lChestplate, lLeggings, lBoots, bow); }
             else if (r <= 0.75) { addEquipment(entity, avgLevel, gHelmet, gChestplate, gLeggings, gBoots, bow); }

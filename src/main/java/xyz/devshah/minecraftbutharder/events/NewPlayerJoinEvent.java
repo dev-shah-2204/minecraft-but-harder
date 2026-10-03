@@ -25,7 +25,7 @@ public class NewPlayerJoinEvent implements Listener {
             meta.setTitle("Empic Tutorial");
             meta.setAuthor("dev-shah-2204");
 
-            List<String> pages = new ArrayList<String>();
+            List<String> pages = new ArrayList<>();
 
             pages.add("Hello, welcome to the server! This server has a custom plugin called \"Minecraft But Harder\" and I'll tell you what it does!");
             pages.add("This plugin makes the game more difficult to play, the zombies and skeletons are really strong, the creepers are a lot faster and the spiders are invisible!");

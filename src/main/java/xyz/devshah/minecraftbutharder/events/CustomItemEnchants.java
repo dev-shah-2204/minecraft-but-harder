@@ -2,10 +2,9 @@ package xyz.devshah.minecraftbutharder.events;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Entity;
+import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -49,7 +48,11 @@ public class CustomItemEnchants implements Listener {
 
                 // Venom
                 if (lore.contains("§6Venom")) {
-                    ((LivingEntity) damaged).addPotionEffect(new PotionEffect(PotionEffectType.POISON, 7*20, 2, false, false));
+                    if (damaged.getType() == EntityType.ZOMBIE || damaged.getType() == EntityType.SKELETON || damaged.getType() == EntityType.ZOMBIE_VILLAGER || damaged.getType() == EntityType.ZOMBIFIED_PIGLIN) {
+                        ((LivingEntity) damaged).addPotionEffect(new PotionEffect(PotionEffectType.WEAKNESS, 7*20, 2, false, false));
+                    } else {
+                        ((LivingEntity) damaged).addPotionEffect(new PotionEffect(PotionEffectType.POISON, 7*20, 2, false, false));
+                    }
                 }
 
                 // Bubonic Plague

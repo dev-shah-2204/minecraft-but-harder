@@ -79,7 +79,7 @@ public class Graves implements Listener {
         player.setLevel(2);
         if (levels.containsKey(player.getDisplayName())) {
             int level = levels.get(player.getDisplayName());
-            Bukkit.getServer().getScheduler().runTaskLater(plugin, () -> {player.setLevel(level);}, 2);
+            Bukkit.getServer().getScheduler().runTaskLater(plugin, () -> player.setLevel(level), 2);
             levels.remove(player.getDisplayName());
         }
     }
