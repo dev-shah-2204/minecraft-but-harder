@@ -6,7 +6,7 @@
 
     <groupId>xyz.devshah</groupId>
     <artifactId>MinecraftButHarder</artifactId>
-    <version>1.7.1</version>
+    <version>1.7.2</version>
     <packaging>jar</packaging>
 
     <name>MinecraftButHarder</name>
@@ -78,7 +78,7 @@
             <version>1.7.2</version>
             <scope>system</scope>
             <systemPath>
-                E:/Programming/java/MinecraftButHarder/ArmorEquipEvent-1.7.2.jar
+                ${project.basedir}/ArmorEquipEvent-1.7.2.jar
             </systemPath>
         </dependency>
     </dependencies>
