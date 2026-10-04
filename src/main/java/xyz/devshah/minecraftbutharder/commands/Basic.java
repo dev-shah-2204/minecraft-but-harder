@@ -87,7 +87,8 @@ public class Basic implements CommandExecutor {
                 double y = player.getLocation().getY();
                 double z = player.getLocation().getZ();
 
-                player.chat("§2I'm at " + String.format("%.0f", x) + "/" + String.format("%.0f", y) + "/" + String.format("%.0f", z));
+                // Broadcast instead of player.chat(), since the server kicks players for sending § in chat
+                player.getServer().broadcastMessage("<" + player.getDisplayName() + "> §2I'm at " + String.format("%.0f", x) + "/" + String.format("%.0f", y) + "/" + String.format("%.0f", z));
             }
 
             else {
@@ -98,6 +99,10 @@ public class Basic implements CommandExecutor {
                     }
                 }
                 player = sender.getServer().getPlayer(args[0]);
+                if (player == null) {
+                    sender.sendMessage("§cPlayer not found");
+                    return true;
+                }
 
                 double x = player.getLocation().getX();
                 double y = player.getLocation().getY();
