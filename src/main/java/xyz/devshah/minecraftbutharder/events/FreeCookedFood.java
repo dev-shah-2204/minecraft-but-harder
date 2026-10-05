@@ -35,7 +35,7 @@ public class FreeCookedFood implements Listener {
             if (!(zombie.isAdult())) {
                 Entity vehicle = zombie.getVehicle();
 
-                if (vehicle.getType() == EntityType.CHICKEN) {
+                if (vehicle != null && vehicle.getType() == EntityType.CHICKEN) {
                     vehicle.remove();
                 }
             }
