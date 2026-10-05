@@ -149,7 +149,7 @@ public class Weapons {
         lore.add("§3This sword is believed to");
         lore.add("§3be the strongest weapon of");
         lore.add("§3all time.");
-        lore.add("§r§oRecieved on defeating the Undead King");
+        lore.add("§r§oRecieved on defeating The Withered Sovereign");
         meta.setLore(lore);
         sword.setItemMeta(meta);
 

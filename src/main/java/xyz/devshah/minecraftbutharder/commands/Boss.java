@@ -60,7 +60,7 @@ public class Boss implements CommandExecutor {
 
             Entity boss = player.getWorld().spawnEntity(location, EntityType.ZOMBIE);
             Zombie zombie = (Zombie) boss;
-            zombie.setCustomName("Undead King");
+            zombie.setCustomName("The Withered Sovereign");
             zombie.setAdult(); // A baby boss would look weird
 
             List<Entity> entityList = player.getNearbyEntities(10,10,10);

@@ -43,7 +43,7 @@ Aliases: cords<br>
 Note: Only ops can get other players' cords.
 
 ### spawnboss
-Description: Spawn the Undead King.<br>
+Description: Spawn The Withered Sovereign.<br>
 Usage: /spawnboss<br>
 
 ### givecustom

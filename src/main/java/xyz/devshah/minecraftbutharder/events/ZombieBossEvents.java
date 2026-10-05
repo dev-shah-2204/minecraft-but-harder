@@ -52,7 +52,7 @@ public class ZombieBossEvents implements Listener {
     @EventHandler
     public void onZombieTurnFishman(EntityTransformEvent event) {
         if (event.getEntity().getCustomName() != null) {
-            if (event.getEntity().getCustomName().equals("Undead King") && event.getEntity() instanceof Zombie) {
+            if (event.getEntity().getCustomName().equals("The Withered Sovereign") && event.getEntity() instanceof Zombie) {
                 event.setCancelled(true);
             }
         }
@@ -63,7 +63,7 @@ public class ZombieBossEvents implements Listener {
     public void onEntityDamage(EntityDamageEvent event) {
         Entity entity = event.getEntity();
 
-        if (entity instanceof Zombie && "Undead King".equals(entity.getCustomName())) {
+        if (entity instanceof Zombie && "The Withered Sovereign".equals(entity.getCustomName())) {
             if (event.getCause() == EntityDamageEvent.DamageCause.SUFFOCATION || event.getCause() == EntityDamageEvent.DamageCause.CRAMMING) {
                 event.setDamage(0);
             }
@@ -78,13 +78,13 @@ public class ZombieBossEvents implements Listener {
         Entity damager = event.getDamager();
 
         if (entity.getCustomName() != null) {
-            if (entity.getCustomName().equalsIgnoreCase("Undead King") && damager instanceof IronGolem && entity instanceof Zombie) {
+            if (entity.getCustomName().equalsIgnoreCase("The Withered Sovereign") && damager instanceof IronGolem && entity instanceof Zombie) {
                 event.setDamage(2); // Almost immune to Iron Golems
             }
             Random random = new Random();
             double r = random.nextDouble();
 
-            if (entity.getCustomName().equalsIgnoreCase("Undead King") && damager instanceof Arrow && ((Arrow) damager).getShooter() instanceof Player && entity instanceof Zombie) {
+            if (entity.getCustomName().equalsIgnoreCase("The Withered Sovereign") && damager instanceof Arrow && ((Arrow) damager).getShooter() instanceof Player && entity instanceof Zombie) {
                 Player shooter = (Player) ((Arrow) damager).getShooter();
                 ((Zombie) entity).setTarget(shooter);
                 event.setCancelled(true); // Players might have power 22 or stronger bows from skeletons
@@ -101,7 +101,7 @@ public class ZombieBossEvents implements Listener {
                 }
             }
 
-            if (entity.getCustomName().equalsIgnoreCase("Undead King") && damager instanceof Player && entity instanceof Zombie) {
+            if (entity.getCustomName().equalsIgnoreCase("The Withered Sovereign") && damager instanceof Player && entity instanceof Zombie) {
                 ((Zombie) entity).setTarget((LivingEntity) event.getDamager());
 
                 if (r <= 0.20) {
@@ -118,7 +118,7 @@ public class ZombieBossEvents implements Listener {
         }
 
         if (damager.getCustomName() != null && entity instanceof Player) {
-            if (damager.getCustomName().equalsIgnoreCase("Undead King") && damager instanceof Zombie) {
+            if (damager.getCustomName().equalsIgnoreCase("The Withered Sovereign") && damager instanceof Zombie) {
                 Player player = (Player) entity;
                 Random random = new Random();
                 double r = random.nextDouble();
@@ -149,7 +149,7 @@ public class ZombieBossEvents implements Listener {
         Entity entity = event.getEntity();
         Entity target = event.getTarget();
         if (entity.getCustomName() != null) {
-            if (entity.getCustomName().equals("Undead King") && entity instanceof Zombie) {
+            if (entity.getCustomName().equals("The Withered Sovereign") && entity instanceof Zombie) {
                 if (!(target instanceof Player)) {
                     List<Entity> entityList = event.getEntity().getNearbyEntities(50, 50, 50);
 
@@ -168,7 +168,7 @@ public class ZombieBossEvents implements Listener {
     @EventHandler
     public void onBossDeath(EntityDeathEvent event) {
         Entity entity = event.getEntity();
-        if (entity.getCustomName() != null && entity.getCustomName().equalsIgnoreCase("Undead King") && entity instanceof Zombie) {
+        if (entity.getCustomName() != null && entity.getCustomName().equalsIgnoreCase("The Withered Sovereign") && entity instanceof Zombie) {
             World world = entity.getWorld();
             Sound sound = Sound.UI_TOAST_CHALLENGE_COMPLETE;
             Location location = entity.getLocation();
