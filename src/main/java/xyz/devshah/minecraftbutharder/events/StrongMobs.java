@@ -53,7 +53,7 @@ public class StrongMobs implements Listener {
         // Iron Armor
         ItemStack iHelmet = new ItemStack(Material.IRON_HELMET, 1);
         ItemStack iChestplate = new ItemStack(Material.IRON_CHESTPLATE, 1);
-        ItemStack iLeggings = new ItemStack(Material.IRON_CHESTPLATE, 1);
+        ItemStack iLeggings = new ItemStack(Material.IRON_LEGGINGS, 1);
         ItemStack iBoots = new ItemStack(Material.IRON_BOOTS, 1);
 
         // Gold Armor
@@ -66,11 +66,12 @@ public class StrongMobs implements Listener {
         ItemStack dHelmet = new ItemStack(Material.DIAMOND_HELMET, 1);
         ItemStack dChestplate = new ItemStack(Material.DIAMOND_CHESTPLATE, 1);
         ItemStack dLeggings = new ItemStack(Material.DIAMOND_LEGGINGS, 1);
-        ItemStack dBoots = new ItemStack(Material.IRON_BOOTS, 1);
+        ItemStack dBoots = new ItemStack(Material.DIAMOND_BOOTS, 1);
 
         // Swords
         ItemStack iSword = new ItemStack(Material.IRON_SWORD, 1);
         ItemStack gSword = new ItemStack(Material.GOLDEN_SWORD, 1);
+        ItemStack dSword = new ItemStack(Material.DIAMOND_SWORD, 1);
 
         // Bow
         ItemStack bow = new ItemStack(Material.BOW, 1);
@@ -100,7 +101,7 @@ public class StrongMobs implements Listener {
                 } else if (r <= 0.90) {
                     addEquipment(entity, avgLevel, iHelmet, iChestplate, iLeggings, iBoots, iSword);
                 } else {
-                    addEquipment(entity, avgLevel, dHelmet, dChestplate, dLeggings, dBoots, iSword);
+                    addEquipment(entity, avgLevel, dHelmet, dChestplate, dLeggings, dBoots, dSword);
                 }
 
                 int effectAmplifier = avgLevel / 6;
