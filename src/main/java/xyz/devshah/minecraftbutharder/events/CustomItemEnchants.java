@@ -56,7 +56,7 @@ public class CustomItemEnchants implements Listener {
                 }
 
                 // Bubonic Plague
-                if (lore.contains("§Bubonic Plague")) {
+                if (lore.contains("§6Bubonic Plague")) {
                     if (r <= 0.7) {
                         ((LivingEntity) damaged).addPotionEffect(new PotionEffect(PotionEffectType.WITHER, 7*20, 0, false, false));
                     }
