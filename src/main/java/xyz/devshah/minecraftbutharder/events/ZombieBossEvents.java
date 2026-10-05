@@ -53,7 +53,7 @@ public class ZombieBossEvents implements Listener {
     @EventHandler
     public void onZombieTurnFishman(EntityTransformEvent event) {
         if (event.getEntity().getCustomName() != null) {
-            if (event.getEntity().getCustomName() == "Undead King" && event.getEntity() instanceof Zombie) {
+            if (event.getEntity().getCustomName().equals("Undead King") && event.getEntity() instanceof Zombie) {
                 event.setCancelled(true);
             }
         }
@@ -156,7 +156,7 @@ public class ZombieBossEvents implements Listener {
         Entity entity = event.getEntity();
         Entity target = event.getTarget();
         if (entity.getCustomName() != null) {
-            if (entity.getCustomName() == "Undead King" && entity instanceof Zombie) {
+            if (entity.getCustomName().equals("Undead King") && entity instanceof Zombie) {
                 if (!(target instanceof Player)) {
                     List<Entity> entityList = event.getEntity().getNearbyEntities(50, 50, 50);
 
