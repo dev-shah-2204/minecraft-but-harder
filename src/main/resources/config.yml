@@ -1,0 +1,40 @@
+features:
+  strong-mobs: true
+  graves: true
+  cooked-food: true
+  exp-rewards: true
+  endermen-drop-pearls-only-in-end: true
+  custom-armor-enchants: true
+  custom-item-enchants: true
+
+mobs:
+  creeper-speed: 7  # Speed 8
+  creeper-health: 1
+  invisible-spiders: true
+  air-guardian-chance: 0.20
+
+boss: 
+  required-level: 70
+  nether-only: true
+  ender-eyes: 50
+  ender-pearls: 80
+
+exp:
+  gain-multiplier: 1.15
+  animal-exp-divider: 1.4
+
+graves:
+  send-coordinates: true
+
+armor-enchants:
+  aura-of-pain-chance: 0.20
+  iron-army-chance: 0.10
+  devils-invitation-chance: 0.30
+  beastly-aura-chance: 0.15
+  undead-army-chance: 0.17
+  leap-of-faith-hearts: 3.5
+
+weapon-enchants:
+  bubonic-plague-chance: 0.7
+  whirlwind-chance: 0.35
+  wrath-of-god-cooldown: 7  # seconds

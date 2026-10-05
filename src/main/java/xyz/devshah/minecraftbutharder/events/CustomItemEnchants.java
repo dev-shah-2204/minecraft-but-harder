@@ -57,14 +57,14 @@ public class CustomItemEnchants implements Listener {
 
                 // Bubonic Plague
                 if (lore.contains("§6Bubonic Plague")) {
-                    if (r <= 0.7) {
+                    if (r <= plugin.getConfig().getDouble("weapon-enchants.bubonic-plague-chance")) {
                         ((LivingEntity) damaged).addPotionEffect(new PotionEffect(PotionEffectType.WITHER, 7*20, 0, false, false));
                     }
                 }
 
                 // Whirlwind
                 if (lore.contains("§6Whirlwind")) {
-                    if (r <= 0.35) {
+                    if (r <= plugin.getConfig().getDouble("weapon-enchants.whirlwind-chance")) {
                         Vector velocity = new Vector(0, 3, 0);
                         damaged.setVelocity(velocity);
                     }
@@ -79,7 +79,7 @@ public class CustomItemEnchants implements Listener {
             Player player = event.getPlayer();
             if (event.getItem().getItemMeta().getLore().contains("§6Wrath of God")) {
                 if (cooldown.contains(player.getDisplayName())) {
-                    player.sendMessage("§cYou're still under the 10 second cooldown");
+                    player.sendMessage("§cYou're still under the " + plugin.getConfig().getInt("weapon-enchants.wrath-of-god-cooldown") + " second cooldown");
                     return;
                 }
 
@@ -87,7 +87,7 @@ public class CustomItemEnchants implements Listener {
                 if (block != null) {
                     player.getWorld().strikeLightning(block.getLocation());
                     cooldown.add(player.getDisplayName());
-                    Bukkit.getServer().getScheduler().runTaskLater(plugin, () -> cooldown.remove(player.getDisplayName()), 10 * 20);
+                    Bukkit.getServer().getScheduler().runTaskLater(plugin, () -> cooldown.remove(player.getDisplayName()), plugin.getConfig().getInt("weapon-enchants.wrath-of-god-cooldown") * 20);
                 }
             }
         }

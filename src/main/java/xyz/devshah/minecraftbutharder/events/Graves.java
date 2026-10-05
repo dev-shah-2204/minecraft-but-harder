@@ -43,7 +43,9 @@ public class Graves implements Listener {
                 double y = player.getLocation().getY();
                 double z = player.getLocation().getZ();
 
-                player.sendMessage("§aYour grave is at " + String.format("%.0f", x) + "/" + String.format("%.0f", y) + "/" + String.format("%.0f", z));
+                if (plugin.getConfig().getBoolean("graves.send-coordinates")) {
+                    player.sendMessage("§aYour grave is at " + String.format("%.0f", x) + "/" + String.format("%.0f", y) + "/" + String.format("%.0f", z));
+                }
                 plugin.getLogger().info("§a" + player.getDisplayName() + "'s grave is at " + String.format("%.0f", x) + "/" + String.format("%.0f", y) + "/" + String.format("%.0f", z));
 
                 Block deathBlock = player.getWorld().getBlockAt(player.getLocation());

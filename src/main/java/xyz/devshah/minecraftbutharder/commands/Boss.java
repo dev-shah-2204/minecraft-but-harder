@@ -11,10 +11,14 @@ import org.bukkit.entity.*;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
+import xyz.devshah.minecraftbutharder.MinecraftButHarder;
 
 import java.util.List;
 
 public class Boss implements CommandExecutor {
+    MinecraftButHarder plugin;
+    public Boss(MinecraftButHarder plugin) { this.plugin = plugin; }
+
     private void addEffect(Zombie entity, PotionEffectType type, int level) {
         entity.addPotionEffect(new PotionEffect(type, Integer.MAX_VALUE, level, false, false));
     }
@@ -39,8 +43,8 @@ public class Boss implements CommandExecutor {
                     sender.sendMessage("§cOnly server operators can spawn the boss");
                     return true;
                 }
-                if (((Player) sender).getLevel() < 70) {
-                    sender.sendMessage("§cYou need to be alteast level 70 to spawn the boss");
+                if (((Player) sender).getLevel() < plugin.getConfig().getInt("boss.required-level")) {
+                    sender.sendMessage("§cYou need to be at least level " + plugin.getConfig().getInt("boss.required-level") + " to spawn the boss");
                     return true;
                 }
                 else {

@@ -102,7 +102,7 @@ public class CustomArmorEnchants implements Listener {
                 if (chestplate.getItemMeta().getLore().contains("§6Aura of Pain")) {
                     Random random = new Random();
                     double r = random.nextDouble();
-                    if (r <= 0.20) {
+                    if (r <= plugin.getConfig().getDouble("armor-enchants.aura-of-pain-chance")) {
                         event.setCancelled(true);
                         player.playSound(player.getLocation(), Sound.ITEM_SHIELD_BLOCK, 1, 1);
                         player.sendMessage("§aYour armor blocked the attack!");
@@ -113,7 +113,7 @@ public class CustomArmorEnchants implements Listener {
                 if (chestplate.getItemMeta().getLore().contains("§6Iron Army") && damager instanceof LivingEntity) {
                     Random random = new Random();
                     double r = random.nextDouble();
-                    if (r <= 0.10) {
+                    if (r <= plugin.getConfig().getDouble("armor-enchants.iron-army-chance")) {
                         Entity golem = damager.getWorld().spawnEntity(damager.getLocation(), EntityType.IRON_GOLEM);
                         golem.setCustomName(player.getDisplayName()+"'s Iron Army");
 
@@ -130,14 +130,14 @@ public class CustomArmorEnchants implements Listener {
                     Random random = new Random();
                     double r = random.nextDouble();
 
-                    if (r <= 0.30 && damager instanceof LivingEntity) {
+                    if (r <= plugin.getConfig().getDouble("armor-enchants.devils-invitation-chance") && damager instanceof LivingEntity) {
                         ((LivingEntity) damager).addPotionEffect(new PotionEffect(PotionEffectType.WEAKNESS, 5*20, 1));
                         ((LivingEntity) damager).addPotionEffect(new PotionEffect(PotionEffectType.WITHER, 3*20, 0));
                         ((LivingEntity) damager).addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 5*20, 0));
                         damager.teleport(damaged.getLocation().add(2, 0, 2));
                     }
 
-                    if (r <= 0.30 && damager instanceof Arrow) {
+                    if (r <= plugin.getConfig().getDouble("armor-enchants.devils-invitation-chance") && damager instanceof Arrow) {
                         if (((Arrow) damager).getShooter() instanceof LivingEntity) {
                             LivingEntity shooter = (LivingEntity) ((Arrow) damager).getShooter();
                             shooter.addPotionEffect(new PotionEffect(PotionEffectType.WEAKNESS, 5*20, 1));
@@ -156,7 +156,7 @@ public class CustomArmorEnchants implements Listener {
             if (leggings != null && leggings.getItemMeta() != null && leggings.getItemMeta().getLore() != null) {
 
                 // Leap of Faith
-                if (leggings.getItemMeta().getLore().contains("§6Leap of Faith") && ((Player) damaged).getHealth() <= 6) {
+                if (leggings.getItemMeta().getLore().contains("§6Leap of Faith") && ((Player) damaged).getHealth() <= (plugin.getConfig().getDouble("armor-enchants.leap-of-faith-hearts") * 2)) {
                     Vector velocity = new Vector(0, 2.5, 0);
                     damaged.setVelocity(velocity);
                     ((Player) damaged).addPotionEffect(new PotionEffect(PotionEffectType.SLOW_FALLING, 4*20, 1, false, false, true));
@@ -174,7 +174,7 @@ public class CustomArmorEnchants implements Listener {
                     Random random = new Random();
                     double r = random.nextDouble();
 
-                    if (r <= 0.15) {
+                    if (r <= plugin.getConfig().getDouble("armor-enchants.beastly-aura-chance")) {
                         Entity wolf = damager.getWorld().spawnEntity(damager.getLocation(), EntityType.WOLF);
                         wolf.setCustomName("§c"+player.getDisplayName()+"'s SPIRIT");
                         ((Wolf) wolf).setTarget((LivingEntity) damager);
@@ -187,7 +187,7 @@ public class CustomArmorEnchants implements Listener {
                 if (boots.getItemMeta().getLore().contains("§6Undead Army") && damager instanceof LivingEntity) {
                     Random random = new Random();
                     double r = random.nextDouble();
-                    if (r <= 0.17) {
+                    if (r <= plugin.getConfig().getDouble("armor-enchants.undead-army-chance")) {
                         Entity zombie = damager.getWorld().spawnEntity(damager.getLocation(), EntityType.ZOMBIE);
                         ((Zombie) zombie).setTarget((LivingEntity) damager);
                         zombie.setCustomName("§4"+ player.getDisplayName() +"'s Raised Undead");

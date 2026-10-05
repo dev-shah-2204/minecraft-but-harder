@@ -5,17 +5,22 @@ import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityExplodeEvent;
 import org.bukkit.event.entity.EntitySpawnEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
+import xyz.devshah.minecraftbutharder.MinecraftButHarder;
 import xyz.devshah.minecraftbutharder.items.Weapons;
 
 import java.util.Random;
 
 public class StrongMobs implements Listener {
+    MinecraftButHarder plugin;
+    public StrongMobs(MinecraftButHarder plugin) { this.plugin = plugin; }
+
     private void addEquipment(Entity entity, int avgLevel, ItemStack helmet, ItemStack chestplate, ItemStack leggings, ItemStack boots, ItemStack weapon) {
         int enchantLevel;
         if (avgLevel <= 7) { enchantLevel = 3; }  // Really difficult for levels lower than 7
@@ -112,7 +117,9 @@ public class StrongMobs implements Listener {
 
                 // Spawning Air Guardians
                 double airGuardianSpawn = random.nextDouble();
-                if (airGuardianSpawn <= 0.20) {
+                if (airGuardianSpawn <= plugin.getConfig().getDouble("features.air-guardian-spawn-chance")) {
+                    ((LivingEntity) entity).addPotionEffect(new PotionEffect(PotionEffectType.SLOW, Integer.MAX_VALUE, 3, false, false));
+                    ((LivingEntity) entity).addPotionEffect(new PotionEffect(PotionEffectType.JUMP, Integer.MAX_VALUE, 128, false, false));
                     Chicken chicken = (Chicken) entity.getWorld().spawnEntity(entity.getLocation(), EntityType.CHICKEN);
                     Zombie rider = (Zombie) entity;
                     rider.setBaby();
@@ -145,12 +152,14 @@ public class StrongMobs implements Listener {
         }
 
         if (entity instanceof Creeper) {
-            ((LivingEntity) entity).setHealth(1);
-            ((LivingEntity) entity).addPotionEffect(new PotionEffect(PotionEffectType.SPEED, Integer.MAX_VALUE, 7, false, false));
+            ((LivingEntity) entity).setHealth(plugin.getConfig().getInt("features.creeper-health"));
+            ((LivingEntity) entity).addPotionEffect(new PotionEffect(PotionEffectType.SPEED, Integer.MAX_VALUE, plugin.getConfig().getInt("features.creeper-speed"), false, false));
         }
 
-        if (entity instanceof Spider) {
-            ((LivingEntity) entity).addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY, Integer.MAX_VALUE, 0, true, true));
+        if (plugin.getConfig().getBoolean("features.spider-invisibility")) {
+            if (entity instanceof Spider) {
+                ((LivingEntity) entity).addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY, Integer.MAX_VALUE, 0, true, true));
+            }
         }
     }
 
@@ -159,6 +168,17 @@ public class StrongMobs implements Listener {
     public void onEntityExplode(EntityExplodeEvent event) {
         if (event.getEntity() instanceof Creeper) {
             ((Creeper) event.getEntity()).removePotionEffect(PotionEffectType.SPEED);
+        }
+    }
+
+    @EventHandler
+    public void onEntityDamage(EntityDamageEvent event) {
+        Entity entity = event.getEntity();
+
+        if (entity instanceof Creeper) {
+            if (event.getCause().equals(EntityDamageEvent.DamageCause.LIGHTNING) || event.getCause().equals(EntityDamageEvent.DamageCause.FIRE) || event.getCause().equals(EntityDamageEvent.DamageCause.FIRE_TICK)) {
+                event.setDamage(0);
+            }
         }
     }
 

@@ -18,7 +18,7 @@ public class CustomMobEvents implements Listener {
                         event.setCancelled(true);
                     }
                 }
-
+                
                 // Raised Undead
                 if (event.getEntity().getCustomName().contains("Raised Undead")) {
                     if (event.getEntity().getCustomName().contains(((Player) event.getTarget()).getDisplayName())) {

@@ -15,11 +15,12 @@ public final class MinecraftButHarder extends JavaPlugin {
 
     @Override
     public void onEnable() {
+        saveDefaultConfig();
         System.out.println("MinecraftButHarder plugin loaded");
 
         // Commands
         Basic basic = new Basic();
-        Boss boss = new Boss();
+        Boss boss = new Boss(this);
         GiveCustomItems customItems = new GiveCustomItems();
 
         getCommand("heal").setExecutor(basic);
@@ -35,14 +36,47 @@ public final class MinecraftButHarder extends JavaPlugin {
         // Events
         PluginManager manager = getServer().getPluginManager();
 
-        manager.registerEvents(new CustomArmorEnchants(this), this);
-        manager.registerEvents(new CustomItemEnchants(this), this);
+        if (getConfig().getBoolean("features.custom-armor-enchants")) {
+            manager.registerEvents(new CustomArmorEnchants(this), this);
+        } else {
+            System.out.println("§c[MinecraftButHarder] custom armor enchants disabled in config.yml");
+        }
+
+        if (getConfig().getBoolean("features.custom-item-enchants")) {
+            manager.registerEvents(new CustomItemEnchants(this), this);
+        } else {
+            System.out.println("§c[MinecraftButHarder] custom item enchants disabled in config.yml");
+        }
+
         manager.registerEvents(new CustomMobEvents(), this);
-        manager.registerEvents(new ExpRewards(), this);
-        manager.registerEvents(new Graves(this), this);
-        manager.registerEvents(new FreeCookedFood(), this);
+        
+        if (getConfig().getBoolean("features.exp-rewards")) {
+            manager.registerEvents(new ExpRewards(), this);
+        } else {
+            System.out.println("§c[MinecraftButHarder] exp rewards disabled in config.yml");
+        }
+
+        if (getConfig().getBoolean("features.graves")) {
+            manager.registerEvents(new Graves(this), this);
+        } else {
+            System.out.println("§c[MinecraftButHarder] graves disabled in config.yml");
+        }
+        
+        if (getConfig().getBoolean("features.cooked-food")) {
+            manager.registerEvents(new FreeCookedFood(this), this);
+
+        } else {
+            System.out.println("§c[MinecraftButHarder] cooked food disabled in config.yml");
+        }
+        
         manager.registerEvents(new NewPlayerJoinEvent(), this);
-        manager.registerEvents(new StrongMobs(), this);
+        
+        if (getConfig().getBoolean("features.strong-mobs")) {
+            manager.registerEvents(new StrongMobs(this), this);
+        } else {
+            System.out.println("§c[MinecraftButHarder] strong mobs disabled in config.yml");
+        }
+
         manager.registerEvents(new ZombieBossEvents(this), this);
         manager.registerEvents(new ExpConcession(this), this);
 

@@ -27,14 +27,13 @@ public class Basic implements CommandExecutor {
                 }
                 player.setHealth(20);
                 sender.sendMessage("§aHealed " + player.getDisplayName());
-            }
-
+            } 
+            
             else {
                 if (!(sender instanceof Player)) {
                     sender.sendMessage("§cPlease provide a player name");
                     return true;
-                }
-                else {
+                } else {
                     ((Player) sender).setHealth(20);
                     sender.sendMessage("§aSet you to max health");
                 }
@@ -65,8 +64,7 @@ public class Basic implements CommandExecutor {
                 if (!(sender instanceof Player)) {
                     sender.sendMessage("§cPlease provide a player name");
                     return true;
-                }
-                else {
+                } else {
                     ((Player) sender).setFoodLevel(20);
                     sender.sendMessage("§aSet you to max food level");
                 }
@@ -80,8 +78,9 @@ public class Basic implements CommandExecutor {
                 if (!(sender instanceof Player)) {
                     sender.sendMessage("§cPlease provide a player name");
                     return true;
+                } else { 
+                    player = (Player) sender; 
                 }
-                else { player = (Player) sender; }
 
                 double x = player.getLocation().getX();
                 double y = player.getLocation().getY();
@@ -98,6 +97,7 @@ public class Basic implements CommandExecutor {
                         return true;
                     }
                 }
+                
                 player = sender.getServer().getPlayer(args[0]);
                 if (player == null) {
                     sender.sendMessage("§cPlayer not found");
@@ -111,9 +111,6 @@ public class Basic implements CommandExecutor {
                 sender.sendMessage(player.getDisplayName() + " is at " + String.format("%.0f", x) + "/" + String.format("%.0f", y) + "/" + String.format("%.0f", z));
             }
         }
-
-
-
 
         return true;
     }

@@ -71,12 +71,6 @@ public class ZombieBossEvents implements Listener {
 
         }
 
-        // Not a zombie boss event but didnt wanna make yet another event handler
-        if (entity instanceof Creeper) {
-            if (event.getCause().equals(EntityDamageEvent.DamageCause.LIGHTNING) || event.getCause().equals(EntityDamageEvent.DamageCause.FIRE) || event.getCause().equals(EntityDamageEvent.DamageCause.FIRE_TICK)) {
-                event.setDamage(0);
-            }
-        }
     }
 
     @EventHandler
@@ -225,13 +219,8 @@ public class ZombieBossEvents implements Listener {
             chest.getInventory().setItem(2, Armor.asmodiusChestplate);
             chest.getInventory().setItem(3, Armor.mammonLeggings);
             chest.getInventory().setItem(4, Armor.belphegorBoots);
-            chest.getInventory().setItem(5, new ItemStack(Material.ENDER_EYE, 25));
-            chest.getInventory().setItem(6, new ItemStack(Material.ENDER_PEARL, 16));
-            chest.getInventory().setItem(7, new ItemStack(Material.ENDER_PEARL, 16));
-            chest.getInventory().setItem(8, new ItemStack(Material.ENDER_PEARL, 16));
-            chest.getInventory().setItem(9, new ItemStack(Material.ENDER_PEARL, 16));
-
-
+            chest.getInventory().addItem(new ItemStack(Material.ENDER_EYE, plugin.getConfig().getInt("boss.ender-eyes")));
+            chest.getInventory().addItem(new ItemStack(Material.ENDER_PEARL, plugin.getConfig().getInt("boss.ender-pearls")));
         }
     }
 }

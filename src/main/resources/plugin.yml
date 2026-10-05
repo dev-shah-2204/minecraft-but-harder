@@ -4,7 +4,7 @@ main: xyz.devshah.minecraftbutharder.MinecraftButHarder
 api-version: 1.17
 authors: [ DevShah ]
 description: Plugin to make Vanilla minecraft difficult to play with some added bonuses
-website: https://projects.devshah.xyz/minecraft-but-harder
+# website: https://projects.devshah.xyz/minecraft-but-harder
 commands:
   heal:
     description: Heal a player
@@ -12,7 +12,7 @@ commands:
     description: Feed a player
   coordinates:
     description: Get the cords of a player
-    aliases: [coords, position]
+    aliases: [cords, position]
   spawnboss:
     description: Spawn the Undead King
   givecustom:

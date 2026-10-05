@@ -39,8 +39,7 @@ public class GiveCustomItems implements CommandExecutor {
                 if (!(sender instanceof Player)) {
                     sender.sendMessage("§cPlease provide a player name");
                     return true;
-                }
-                else {
+                } else {
                     player = (Player) sender;
                 }
             }
@@ -132,7 +131,7 @@ public class GiveCustomItems implements CommandExecutor {
                 giveItem(player, Items.etherealPickaxe);
                 sender.sendMessage("Gave 1 [" + args[0]+ "] to " + player.getDisplayName());
                 return true;
-            }
+            } 
             else if (args[0].equalsIgnoreCase("servantShovel")) {
                 giveItem(player, Items.servantShovel);
                 sender.sendMessage("Gave 1 [" + args[0]+ "] to " + player.getDisplayName());

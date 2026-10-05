@@ -11,10 +11,13 @@ import org.bukkit.event.enchantment.EnchantItemEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.player.PlayerExpChangeEvent;
 import org.bukkit.inventory.ItemStack;
+import xyz.devshah.minecraftbutharder.MinecraftButHarder;
 
 import java.util.Random;
 
 public class FreeCookedFood implements Listener {
+    MinecraftButHarder plugin;
+    public FreeCookedFood(MinecraftButHarder plugin) { this.plugin = plugin; }
 
     private void dropItem(Entity entity, Material material, int amount) {
         entity.getWorld().dropItemNaturally(entity.getLocation(), new ItemStack(material, amount));
@@ -43,7 +46,7 @@ public class FreeCookedFood implements Listener {
 
         if (entity.getType() == EntityType.COW) {
             event.getDrops().clear();
-            event.setDroppedExp((int) (event.getDroppedExp()/1.7));
+            event.setDroppedExp((int) (event.getDroppedExp()/plugin.getConfig().getDouble("exp.animal-exp-divider")));
 
             dropItem(entity, Material.COOKED_BEEF, 2);
             if (dropRare(0.4)) { dropItem(entity, Material.LEATHER, 1); }
@@ -51,7 +54,7 @@ public class FreeCookedFood implements Listener {
 
         if (entity.getType() == EntityType.CHICKEN) {
             event.getDrops().clear();
-            event.setDroppedExp((int) (event.getDroppedExp()/1.7));
+            event.setDroppedExp((int) (event.getDroppedExp()/plugin.getConfig().getDouble("exp.animal-exp-divider")));
 
             dropItem(entity, Material.COOKED_CHICKEN, 1);
             if (dropRare(0.4)) { dropItem(entity, Material.FEATHER, 1); }
@@ -59,7 +62,7 @@ public class FreeCookedFood implements Listener {
 
         if (entity.getType() == EntityType.COD) {
             event.getDrops().clear();
-            event.setDroppedExp((int) (event.getDroppedExp()/1.7));
+            event.setDroppedExp((int) (event.getDroppedExp()/plugin.getConfig().getDouble("exp.animal-exp-divider")));
 
             dropItem(entity, Material.COOKED_COD, 1);
             if (dropRare(0.35)) {  dropItem(entity, Material.BONE_MEAL, 1); }
@@ -67,7 +70,7 @@ public class FreeCookedFood implements Listener {
 
         if (entity.getType() == EntityType.SALMON) {
             event.getDrops().clear();
-            event.setDroppedExp((int) (event.getDroppedExp()/1.7));
+            event.setDroppedExp((int) (event.getDroppedExp()/plugin.getConfig().getDouble("exp.animal-exp-divider")));
 
             dropItem(entity, Material.COOKED_SALMON, 1);
             if (dropRare(0.35)) { dropItem(entity, Material.BONE_MEAL, 1); }
@@ -75,7 +78,7 @@ public class FreeCookedFood implements Listener {
 
         if (entity.getType() == EntityType.MUSHROOM_COW) {
             event.getDrops().clear();
-            event.setDroppedExp((int) (event.getDroppedExp()/1.7));
+            event.setDroppedExp((int) (event.getDroppedExp()/plugin.getConfig().getDouble("exp.animal-exp-divider")));
 
             dropItem(entity, Material.COOKED_BEEF, 2);
             if (dropRare((float) 0.4)) { dropItem(entity, Material.LEATHER, 1); }
@@ -83,7 +86,7 @@ public class FreeCookedFood implements Listener {
 
         if (entity.getType() == EntityType.RABBIT) {
             event.getDrops().clear();
-            event.setDroppedExp((int) (event.getDroppedExp()/1.7));
+            event.setDroppedExp((int) (event.getDroppedExp()/plugin.getConfig().getDouble("exp.animal-exp-divider")));
 
             dropItem(entity, Material.COOKED_RABBIT, 1);
             if (dropRare((float) 0.45)) { dropItem(entity, Material.RABBIT_HIDE, 1); }
@@ -93,25 +96,25 @@ public class FreeCookedFood implements Listener {
         // Entity with regular drops
         if (entity.getType() == EntityType.PIG) {
             event.getDrops().clear();
-            event.setDroppedExp((int) (event.getDroppedExp()/1.7));
+            event.setDroppedExp((int) (event.getDroppedExp()/plugin.getConfig().getDouble("exp.animal-exp-divider")));
             dropItem(entity, Material.COOKED_PORKCHOP, 2);
         }
 
         if (entity.getType() == EntityType.FOX) {
             event.getDrops().clear();
-            event.setDroppedExp((int) (event.getDroppedExp()/1.7));
+            event.setDroppedExp((int) (event.getDroppedExp()/plugin.getConfig().getDouble("exp.animal-exp-divider")));
             dropItem(entity, Material.SWEET_BERRIES, 2);
         }
 
         if (entity.getType() == EntityType.SHEEP) {
             event.getDrops().remove(new ItemStack(Material.MUTTON, 1));
             event.getDrops().remove(new ItemStack(Material.MUTTON, 2));
-            event.setDroppedExp((int) (event.getDroppedExp()/1.7));
+            event.setDroppedExp((int) (event.getDroppedExp()/plugin.getConfig().getDouble("exp.animal-exp-divider")));
             dropItem(entity, Material.COOKED_MUTTON, 2);
         }
 
         if (entity.getType() == EntityType.TURTLE) {
-            event.setDroppedExp((int) (event.getDroppedExp()/1.7));
+            event.setDroppedExp((int) (event.getDroppedExp()/plugin.getConfig().getDouble("exp.animal-exp-divider")));
             if (dropRare(0.05)) {  dropItem(entity, Material.TURTLE_HELMET,1); }
         }
 
@@ -127,7 +130,7 @@ public class FreeCookedFood implements Listener {
     public void onExpChange(PlayerExpChangeEvent event) {
         if (event.getAmount() > 0) {
             // It should be a little easier to get exp points than it is.
-            event.setAmount((int) (event.getAmount() * 1.2));
+            event.setAmount((int) (event.getAmount() * plugin.getConfig().getDouble("exp.gain-multiplier")));
         }
     }
 
