@@ -119,7 +119,7 @@ public class FreeCookedFood implements Listener {
         }
 
         if (entity.getType() == EntityType.ENDERMAN) {
-            if (!(entity.getWorld().getEnvironment().equals(World.Environment.THE_END))) {
+            if (plugin.getConfig().getBoolean("features.endermen-drop-pearls-only-in-end") && !(entity.getWorld().getEnvironment().equals(World.Environment.THE_END))) {
                 event.getDrops().clear();
             }
         }
