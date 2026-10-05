@@ -16,13 +16,13 @@ public class TabCompletion implements TabCompleter {
                 List<String> items = new ArrayList<>();
                 items.add("oldSafetyHelmet");
                 items.add("ancientVenomSword");
-                items.add("imperviousChestplate");
+                items.add("forbiddenImperviousChestplate");
                 items.add("asgardAxe");
-                items.add("imperviousLeggings");
+                items.add("forbiddenImperviousLeggings");
                 items.add("etherPickaxe");
-                items.add("imperviousHelmet");
+                items.add("forbiddenImperviousHelmet");
                 items.add("excalibur");
-                items.add("imperviousBoots");
+                items.add("forbiddenImperviousBoots");
                 items.add("claudiusAegis");
                 items.add("servantShovel");
                 items.add("minerFriend");
