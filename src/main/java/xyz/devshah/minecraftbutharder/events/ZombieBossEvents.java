@@ -25,14 +25,13 @@ public class ZombieBossEvents implements Listener {
 
     private void spawnAirGuardian(Entity entity, Player player) {
         Entity chicken = (Chicken) entity.getWorld().spawnEntity(entity.getLocation(), EntityType.CHICKEN);
-        Zombie rider = (Zombie) chicken.getWorld().spawnEntity(chicken.getLocation(), EntityType.ZOMBIE);
+        Zombie rider = chicken.getWorld().spawn(chicken.getLocation(), Zombie.class, z -> z.setCustomName("Elite Air Guardian"));
         rider.setBaby();
 
         ItemStack weapon = Weapons.devilStick;
 
         rider.getEquipment().setItemInMainHand(weapon);
         rider.getEquipment().setItemInMainHandDropChance(0.035F); // 3.5% Chance of dropping the Knockback 15 stick
-        rider.setCustomName("Elite Air Guardian");
         rider.setHealth(1); // half heart
         chicken.addPassenger(rider);
 
@@ -156,7 +155,8 @@ public class ZombieBossEvents implements Listener {
 
                     for (Entity mob : entityList) {
                         if (mob instanceof Player) {
-                            ((Zombie) entity).setTarget((LivingEntity) mob);
+                            event.setTarget(mob);
+                            break;
                         }
                     }
                 }
@@ -175,12 +175,13 @@ public class ZombieBossEvents implements Listener {
 
             world.playSound(entity.getLocation(), Sound.BLOCK_ANVIL_PLACE, 10, 0);
             Bukkit.getServer().getScheduler().runTaskLater(plugin, () -> {world.playSound(location, sound, 10, 0);}, 6);
-            Bukkit.getServer().getScheduler().runTaskLater(plugin, () -> {world.playSound(location, sound, 10, 0);}, 6);
+            Bukkit.getServer().getScheduler().runTaskLater(plugin, () -> {world.playSound(location, sound, 10, 0);}, 6); // Played twice at once to make it louder
 
             entity.getServer().broadcastMessage("§aThe undead king has been quelled. Congratulations, brave warriors!");
 
             for (Entity mob : entity.getWorld().getEntities()) {
                 if (mob.getCustomName() != null && mob.getCustomName().equalsIgnoreCase("Elite Air Guardian")) {
+                    if (mob.getVehicle() != null) { mob.getVehicle().remove(); }
                     mob.remove();
                 }
                 if (mob.getCustomName() != null && mob.getCustomName().equalsIgnoreCase("Suicide Bomber")) {
