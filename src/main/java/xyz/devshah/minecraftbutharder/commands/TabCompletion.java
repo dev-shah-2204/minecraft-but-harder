@@ -3,6 +3,7 @@ package xyz.devshah.minecraftbutharder.commands;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
+import org.bukkit.util.StringUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,7 +32,7 @@ public class TabCompletion implements TabCompleter {
                 items.add("devilChestplate");
                 items.add("devilLeggings");
                 items.add("devilBoots");
-                return items;
+                return StringUtil.copyPartialMatches(args[0], items, new ArrayList<>());
             }
         }
         return null;
