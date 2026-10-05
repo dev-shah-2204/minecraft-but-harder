@@ -58,7 +58,7 @@ public class ExpConcession implements Listener {
 
             if (event.getRawSlot() == 2) {
                 int og_level = levels.get(player.getDisplayName());
-                levels.remove(player);
+                levels.remove(player.getDisplayName());
 
                 Bukkit.getServer().getScheduler().runTaskLater(plugin, () -> {player.setLevel(og_level);}, 1);
 
