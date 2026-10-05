@@ -117,7 +117,7 @@ public class StrongMobs implements Listener {
 
                 // Spawning Air Guardians
                 double airGuardianSpawn = random.nextDouble();
-                if (airGuardianSpawn <= plugin.getConfig().getDouble("features.air-guardian-spawn-chance")) {
+                if (airGuardianSpawn <= plugin.getConfig().getDouble("mobs.air-guardian-chance")) {
                     ((LivingEntity) entity).addPotionEffect(new PotionEffect(PotionEffectType.SLOW, Integer.MAX_VALUE, 3, false, false));
                     ((LivingEntity) entity).addPotionEffect(new PotionEffect(PotionEffectType.JUMP, Integer.MAX_VALUE, 128, false, false));
                     Chicken chicken = (Chicken) entity.getWorld().spawnEntity(entity.getLocation(), EntityType.CHICKEN);
@@ -152,11 +152,11 @@ public class StrongMobs implements Listener {
         }
 
         if (entity instanceof Creeper) {
-            ((LivingEntity) entity).setHealth(plugin.getConfig().getInt("features.creeper-health"));
-            ((LivingEntity) entity).addPotionEffect(new PotionEffect(PotionEffectType.SPEED, Integer.MAX_VALUE, plugin.getConfig().getInt("features.creeper-speed"), false, false));
+            ((LivingEntity) entity).setHealth(Math.min(plugin.getConfig().getInt("mobs.creeper-health"), ((LivingEntity) entity).getMaxHealth()));
+            ((LivingEntity) entity).addPotionEffect(new PotionEffect(PotionEffectType.SPEED, Integer.MAX_VALUE, plugin.getConfig().getInt("mobs.creeper-speed"), false, false));
         }
 
-        if (plugin.getConfig().getBoolean("features.spider-invisibility")) {
+        if (plugin.getConfig().getBoolean("mobs.invisible-spiders")) {
             if (entity instanceof Spider) {
                 ((LivingEntity) entity).addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY, Integer.MAX_VALUE, 0, true, true));
             }
