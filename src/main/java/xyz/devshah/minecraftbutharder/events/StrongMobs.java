@@ -1,11 +1,23 @@
 package xyz.devshah.minecraftbutharder.events;
 
+import java.util.Random;
+
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
-import org.bukkit.entity.*;
+import org.bukkit.entity.Chicken;
+import org.bukkit.entity.Creeper;
+import org.bukkit.entity.Entity;
+import org.bukkit.entity.EntityType;
+import org.bukkit.entity.LivingEntity;
+import org.bukkit.entity.Player;
+import org.bukkit.entity.Skeleton;
+import org.bukkit.entity.Spider;
+import org.bukkit.entity.Zombie;
+import org.bukkit.entity.ZombieVillager;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageEvent;
+import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.entity.EntityExplodeEvent;
 import org.bukkit.event.entity.EntitySpawnEvent;
 import org.bukkit.inventory.ItemStack;
@@ -14,8 +26,6 @@ import org.bukkit.potion.PotionEffectType;
 
 import xyz.devshah.minecraftbutharder.MinecraftButHarder;
 import xyz.devshah.minecraftbutharder.items.Weapons;
-
-import java.util.Random;
 
 public class StrongMobs implements Listener {
     MinecraftButHarder plugin;
@@ -170,6 +180,21 @@ public class StrongMobs implements Listener {
             ((Creeper) event.getEntity()).removePotionEffect(PotionEffectType.SPEED);
         }
     }
+
+    // Remove lava chicken music disc 
+    @EventHandler 
+    public void onEntityDeath(EntityDeathEvent event) { 
+        Entity entity = event.getEntity();
+
+        if (entity instanceof Zombie) {
+            if (entity.getVehicle() instanceof Chicken) {
+                if (!(plugin.getConfig().getBoolean("mobs.air-guardian-drops-music-disc"))) {
+                    event.getDrops().removeIf(item -> item.getType().name().equals("MUSIC_DISC_LAVA_CHICKEN"));
+                }
+            }
+        }
+    }
+
 
     @EventHandler
     public void onEntityDamage(EntityDamageEvent event) {

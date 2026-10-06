@@ -12,6 +12,7 @@ mobs:
   creeper-health: 1
   invisible-spiders: true
   air-guardian-chance: 0.20
+  air-guardian-drops-music-disc: true
 
 boss: 
   required-level: 70
