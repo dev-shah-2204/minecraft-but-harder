@@ -82,17 +82,17 @@ public class Boss implements CommandExecutor {
             ItemStack boots = new ItemStack(Material.NETHERITE_BOOTS, 1);
             ItemStack weapon = new ItemStack(Material.NETHERITE_SWORD, 1);
 
-            helmet.addUnsafeEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 12);
-            helmet.addUnsafeEnchantment(Enchantment.PROTECTION_FIRE, 5);
+            helmet.addUnsafeEnchantment(Enchantment.PROTECTION, 12);
+            helmet.addUnsafeEnchantment(Enchantment.FIRE_PROTECTION, 5);
 
-            chestplate.addUnsafeEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 12);
-            chestplate.addUnsafeEnchantment(Enchantment.PROTECTION_PROJECTILE, 5);
+            chestplate.addUnsafeEnchantment(Enchantment.PROTECTION, 12);
+            chestplate.addUnsafeEnchantment(Enchantment.PROJECTILE_PROTECTION, 5);
 
-            leggings.addUnsafeEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 12);
-            leggings.addUnsafeEnchantment(Enchantment.PROTECTION_EXPLOSIONS, 5);
+            leggings.addUnsafeEnchantment(Enchantment.PROTECTION, 12);
+            leggings.addUnsafeEnchantment(Enchantment.BLAST_PROTECTION, 5);
 
-            boots.addUnsafeEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 12);
-            boots.addUnsafeEnchantment(Enchantment.PROTECTION_FALL, 5);
+            boots.addUnsafeEnchantment(Enchantment.PROTECTION, 12);
+            boots.addUnsafeEnchantment(Enchantment.FEATHER_FALLING, 5);
 
             zombie.getEquipment().setHelmet(helmet);
             zombie.getEquipment().setChestplate(chestplate);
@@ -110,11 +110,11 @@ public class Boss implements CommandExecutor {
 
             zombie.addPotionEffect(new PotionEffect(PotionEffectType.WEAKNESS, 3*20, 255, false, false));
             addEffect(zombie, PotionEffectType.FIRE_RESISTANCE, 0);
-            addEffect(zombie, PotionEffectType.INCREASE_DAMAGE, 0);
+            addEffect(zombie, PotionEffectType.STRENGTH, 0);
             addEffect(zombie, PotionEffectType.ABSORPTION, 3);
             addEffect(zombie, PotionEffectType.HEALTH_BOOST, 10);
             addEffect(zombie, PotionEffectType.SPEED, 1);
-            addEffect(zombie, PotionEffectType.JUMP, 1);
+            addEffect(zombie, PotionEffectType.JUMP_BOOST, 1);
             addEffect(zombie, PotionEffectType.GLOWING, 0);
 
         }

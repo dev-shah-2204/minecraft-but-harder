@@ -36,10 +36,10 @@ public class StrongMobs implements Listener {
         if (avgLevel <= 7) { enchantLevel = 3; }  // Really difficult for levels lower than 7
         else {enchantLevel = (int) (avgLevel / 4.5);}  // Moderately difficult for levels higher than 7
 
-        helmet.addUnsafeEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, enchantLevel);
-        chestplate.addUnsafeEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, enchantLevel);
-        leggings.addUnsafeEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, enchantLevel);
-        boots.addUnsafeEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, enchantLevel);
+        helmet.addUnsafeEnchantment(Enchantment.PROTECTION, enchantLevel);
+        chestplate.addUnsafeEnchantment(Enchantment.PROTECTION, enchantLevel);
+        leggings.addUnsafeEnchantment(Enchantment.PROTECTION, enchantLevel);
+        boots.addUnsafeEnchantment(Enchantment.PROTECTION, enchantLevel);
 
         ((LivingEntity) entity).getEquipment().setHelmet(helmet);
         ((LivingEntity) entity).getEquipment().setChestplate(chestplate);
@@ -123,13 +123,13 @@ public class StrongMobs implements Listener {
                 if (effectAmplifier > 0) {
                     effectAmplifier -= 1;
                 }
-                ((LivingEntity) entity).addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, Integer.MAX_VALUE, effectAmplifier, false, false));
+                ((LivingEntity) entity).addPotionEffect(new PotionEffect(PotionEffectType.STRENGTH, Integer.MAX_VALUE, effectAmplifier, false, false));
 
                 // Spawning Air Guardians
                 double airGuardianSpawn = random.nextDouble();
                 if (airGuardianSpawn <= plugin.getConfig().getDouble("mobs.air-guardian-chance")) {
-                    ((LivingEntity) entity).addPotionEffect(new PotionEffect(PotionEffectType.SLOW, Integer.MAX_VALUE, 3, false, false));
-                    ((LivingEntity) entity).addPotionEffect(new PotionEffect(PotionEffectType.JUMP, Integer.MAX_VALUE, 128, false, false));
+                    ((LivingEntity) entity).addPotionEffect(new PotionEffect(PotionEffectType.SLOWNESS, Integer.MAX_VALUE, 3, false, false));
+                    ((LivingEntity) entity).addPotionEffect(new PotionEffect(PotionEffectType.JUMP_BOOST, Integer.MAX_VALUE, 128, false, false));
                     Chicken chicken = (Chicken) entity.getWorld().spawnEntity(entity.getLocation(), EntityType.CHICKEN);
                     Zombie rider = (Zombie) entity;
                     rider.setBaby();
@@ -139,11 +139,11 @@ public class StrongMobs implements Listener {
 
                     rider.getEquipment().setHelmetDropChance(0);
                     rider.getEquipment().setItemInMainHandDropChance(0.1F);
-                    rider.removePotionEffect(PotionEffectType.INCREASE_DAMAGE);
+                    rider.removePotionEffect(PotionEffectType.STRENGTH);
                     rider.setHealth(1);
 
                     chicken.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, Integer.MAX_VALUE, 3));
-                    chicken.addPotionEffect(new PotionEffect(PotionEffectType.JUMP, Integer.MAX_VALUE, 3));
+                    chicken.addPotionEffect(new PotionEffect(PotionEffectType.JUMP_BOOST, Integer.MAX_VALUE, 3));
                     chicken.addPotionEffect(new PotionEffect(PotionEffectType.SLOW_FALLING, Integer.MAX_VALUE, 0));
                     chicken.addPassenger(rider);
                 }
@@ -153,7 +153,7 @@ public class StrongMobs implements Listener {
         if (entity instanceof Skeleton) {
             double r = random.nextDouble();
 
-            bow.addUnsafeEnchantment(Enchantment.ARROW_DAMAGE, avgLevel / 4);
+            bow.addUnsafeEnchantment(Enchantment.POWER, avgLevel / 4);
 
             if (r <= 0.45) { addEquipment(entity, avgLevel, lHelmet, lChestplate, lLeggings, lBoots, bow); }
             else if (r <= 0.75) { addEquipment(entity, avgLevel, gHelmet, gChestplate, gLeggings, gBoots, bow); }

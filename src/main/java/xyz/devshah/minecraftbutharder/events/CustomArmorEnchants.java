@@ -44,7 +44,7 @@ public class CustomArmorEnchants implements Listener {
             if (lore.contains("§6Speed")) { addEffect(player, PotionEffectType.SPEED, 1); }
             if (lore.contains("§6Saturation")) { addEffect(player, PotionEffectType.SATURATION, 1); }
             if (lore.contains("§6Fire Resistance")) { addEffect(player, PotionEffectType.FIRE_RESISTANCE, 0); }
-            if (lore.contains("§6Jump Boost")) { addEffect(player, PotionEffectType.JUMP, 0); }
+            if (lore.contains("§6Jump Boost")) { addEffect(player, PotionEffectType.JUMP_BOOST, 0); }
             if (lore.contains("§6Dolphin's Grace")) { addEffect(player, PotionEffectType.DOLPHINS_GRACE, 0); }
             if (lore.contains("§6Absorbtion")) { addEffect(player, PotionEffectType.ABSORPTION, 1); }
             if (lore.contains("§6Health Boost")) { addEffect(player, PotionEffectType.HEALTH_BOOST, 2); }
@@ -58,7 +58,7 @@ public class CustomArmorEnchants implements Listener {
             if  (lore.contains("§6Speed")) { player.removePotionEffect(PotionEffectType.SPEED); }
             if (lore.contains("§6Saturation")) { player.removePotionEffect(PotionEffectType.SATURATION); }
             if (lore.contains("§6Fire Resistance")) { player.removePotionEffect(PotionEffectType.FIRE_RESISTANCE); }
-            if (lore.contains("§6Jump Boost")) { player.removePotionEffect(PotionEffectType.JUMP); }
+            if (lore.contains("§6Jump Boost")) { player.removePotionEffect(PotionEffectType.JUMP_BOOST); }
             if (lore.contains("§6Dolphin's Grace")) { player.removePotionEffect(PotionEffectType.DOLPHINS_GRACE); }
             if (lore.contains("§6Health Boost")) { player.removePotionEffect(PotionEffectType.HEALTH_BOOST); }
             if (lore.contains("§6Absorbtion")) { player.removePotionEffect(PotionEffectType.ABSORPTION); }
@@ -118,7 +118,7 @@ public class CustomArmorEnchants implements Listener {
                         golem.setCustomName(player.getDisplayName()+"'s Iron Army");
 
                         ((IronGolem) golem).setTarget((LivingEntity) damager);
-                        ((IronGolem) golem).addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, Integer.MAX_VALUE, 1, false, false));
+                        ((IronGolem) golem).addPotionEffect(new PotionEffect(PotionEffectType.STRENGTH, Integer.MAX_VALUE, 1, false, false));
 
                         Bukkit.getServer().getScheduler().runTaskLater(plugin, golem::remove, 30*20);
 
@@ -133,7 +133,7 @@ public class CustomArmorEnchants implements Listener {
                     if (r <= plugin.getConfig().getDouble("armor-enchants.devils-invitation-chance") && damager instanceof LivingEntity) {
                         ((LivingEntity) damager).addPotionEffect(new PotionEffect(PotionEffectType.WEAKNESS, 5*20, 1));
                         ((LivingEntity) damager).addPotionEffect(new PotionEffect(PotionEffectType.WITHER, 3*20, 0));
-                        ((LivingEntity) damager).addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 5*20, 0));
+                        ((LivingEntity) damager).addPotionEffect(new PotionEffect(PotionEffectType.SLOWNESS, 5*20, 0));
                         damager.teleport(damaged.getLocation().add(2, 0, 2));
                     }
 
@@ -142,7 +142,7 @@ public class CustomArmorEnchants implements Listener {
                             LivingEntity shooter = (LivingEntity) ((Arrow) damager).getShooter();
                             shooter.addPotionEffect(new PotionEffect(PotionEffectType.WEAKNESS, 5*20, 1));
                             shooter.addPotionEffect(new PotionEffect(PotionEffectType.WITHER, 3*20, 0));
-                            shooter.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 5*20, 0));
+                            shooter.addPotionEffect(new PotionEffect(PotionEffectType.SLOWNESS, 5*20, 0));
                             shooter.teleport(damaged.getLocation().add(2, 0, 2));
                         }
                     }

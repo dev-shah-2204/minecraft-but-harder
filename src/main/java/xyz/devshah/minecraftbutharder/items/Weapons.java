@@ -41,7 +41,7 @@ public class Weapons {
 
     public static void createPoisonStoneSword() {
         ItemStack poisonStoneSword = new ItemStack(Material.STONE_SWORD, 1);
-        poisonStoneSword.addEnchantment(Enchantment.DURABILITY, 3);
+        poisonStoneSword.addEnchantment(Enchantment.UNBREAKING, 3);
         ItemMeta meta = poisonStoneSword.getItemMeta();
 
         meta.setDisplayName("§8Ancient Venomous Sword");
@@ -55,8 +55,8 @@ public class Weapons {
 
     public static void createAsgardAxe() {
         ItemStack godDiamondAxe = new ItemStack(Material.DIAMOND_AXE, 1);
-        godDiamondAxe.addUnsafeEnchantment(Enchantment.DAMAGE_ALL, 3);
-        godDiamondAxe.addUnsafeEnchantment(Enchantment.DAMAGE_UNDEAD, 2);
+        godDiamondAxe.addUnsafeEnchantment(Enchantment.SHARPNESS, 3);
+        godDiamondAxe.addUnsafeEnchantment(Enchantment.SMITE, 2);
 
         ItemMeta meta = godDiamondAxe.getItemMeta();
         meta.setDisplayName("§4Axe of the Asgardian");
@@ -78,11 +78,11 @@ public class Weapons {
 
     public static void createExcalibur() {
         ItemStack excaliburSword = new ItemStack(Material.DIAMOND_SWORD, 1);
-        excaliburSword.addUnsafeEnchantment(Enchantment.DAMAGE_ALL, 4);
-        excaliburSword.addUnsafeEnchantment(Enchantment.DAMAGE_ARTHROPODS, 2);
-        excaliburSword.addUnsafeEnchantment(Enchantment.DAMAGE_UNDEAD, 2);
+        excaliburSword.addUnsafeEnchantment(Enchantment.SHARPNESS, 4);
+        excaliburSword.addUnsafeEnchantment(Enchantment.BANE_OF_ARTHROPODS, 2);
+        excaliburSword.addUnsafeEnchantment(Enchantment.SMITE, 2);
         excaliburSword.addUnsafeEnchantment(Enchantment.FIRE_ASPECT, 2);
-        excaliburSword.addUnsafeEnchantment(Enchantment.LOOT_BONUS_MOBS, 2);
+        excaliburSword.addUnsafeEnchantment(Enchantment.LOOTING, 2);
 
 
         ArrayList<String> lore = new ArrayList<>();
@@ -106,7 +106,7 @@ public class Weapons {
 
     public static void createClaudiusAegis() {
         ItemStack shield = new ItemStack(Material.SHIELD, 1);
-        shield.addUnsafeEnchantment(Enchantment.LUCK, 1);
+        shield.addUnsafeEnchantment(Enchantment.LUCK_OF_THE_SEA, 1);
 
         ArrayList<String> lore = new ArrayList<>();
         lore.add("Unbreakable");
@@ -131,10 +131,10 @@ public class Weapons {
     public static void createDevilSword() {
         ItemStack sword = new ItemStack(Material.DIAMOND_SWORD, 1);
 
-        sword.addUnsafeEnchantment(Enchantment.DAMAGE_ALL, 7);
-        sword.addUnsafeEnchantment(Enchantment.DAMAGE_ARTHROPODS, 7);
-        sword.addUnsafeEnchantment(Enchantment.DAMAGE_UNDEAD, 7);
-        sword.addUnsafeEnchantment(Enchantment.LOOT_BONUS_MOBS, 4);
+        sword.addUnsafeEnchantment(Enchantment.SHARPNESS, 7);
+        sword.addUnsafeEnchantment(Enchantment.BANE_OF_ARTHROPODS, 7);
+        sword.addUnsafeEnchantment(Enchantment.SMITE, 7);
+        sword.addUnsafeEnchantment(Enchantment.LOOTING, 4);
 
 
         ItemMeta meta = sword.getItemMeta();

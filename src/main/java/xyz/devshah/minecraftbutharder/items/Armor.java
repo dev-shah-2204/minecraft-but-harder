@@ -40,7 +40,7 @@ public class Armor {
         ItemStack nightVisionHelmet = new ItemStack(Material.LEATHER_HELMET);
 
         nightVisionHelmet.addEnchantment(Enchantment.VANISHING_CURSE, 1);
-        nightVisionHelmet.addEnchantment(Enchantment.DURABILITY, 2);
+        nightVisionHelmet.addEnchantment(Enchantment.UNBREAKING, 2);
 
         ItemMeta meta = nightVisionHelmet.getItemMeta();
         ArrayList<String> lore = new ArrayList<>();
@@ -56,8 +56,8 @@ public class Armor {
     // Forbidden Imeprvious Set
     private static void createForbiddenImperviousHelmet() {
         ItemStack helmet = new ItemStack(Material.IRON_HELMET);
-        helmet.addEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 4);
-        helmet.addEnchantment(Enchantment.PROTECTION_PROJECTILE, 2);
+        helmet.addEnchantment(Enchantment.PROTECTION, 4);
+        helmet.addEnchantment(Enchantment.PROJECTILE_PROTECTION, 2);
 
         ItemMeta meta = helmet.getItemMeta();
         meta.setDisplayName("§9Forbidden Impervious Helmet");
@@ -83,8 +83,8 @@ public class Armor {
 
     private static void createForbiddenImperviousChestplate() {
         ItemStack imperviousChestplate = new ItemStack(Material.IRON_CHESTPLATE);
-        imperviousChestplate.addEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 4);
-        imperviousChestplate.addEnchantment(Enchantment.PROTECTION_EXPLOSIONS, 2);
+        imperviousChestplate.addEnchantment(Enchantment.PROTECTION, 4);
+        imperviousChestplate.addEnchantment(Enchantment.BLAST_PROTECTION, 2);
 
         ItemMeta meta = imperviousChestplate.getItemMeta();
         meta.setDisplayName("§9Forbidden Impervious Chestplate");
@@ -108,7 +108,7 @@ public class Armor {
 
     private static void createForbiddenImperviousLeggings() {
         ItemStack leggings = new ItemStack(Material.IRON_LEGGINGS);
-        leggings.addEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 4);
+        leggings.addEnchantment(Enchantment.PROTECTION, 4);
 
         ArrayList<String> lore = new ArrayList<>();
         lore.add("Unbreakable");
@@ -133,8 +133,8 @@ public class Armor {
 
     private static void createForbiddenImperviousBoots() {
         ItemStack boots = new ItemStack(Material.IRON_BOOTS);
-        boots.addUnsafeEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 4);
-        boots.addUnsafeEnchantment(Enchantment.PROTECTION_FALL, 3);
+        boots.addUnsafeEnchantment(Enchantment.PROTECTION, 4);
+        boots.addUnsafeEnchantment(Enchantment.FEATHER_FALLING, 3);
 
         ArrayList<String> lore = new ArrayList<>();
         lore.add("Unbreakable");
@@ -160,8 +160,8 @@ public class Armor {
     // Devil's Armor set
     private static void createDevilHelmet() {
         ItemStack helmet = new ItemStack(Material.DIAMOND_HELMET);
-        helmet.addUnsafeEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 7);
-        helmet.addUnsafeEnchantment(Enchantment.PROTECTION_PROJECTILE, 4);
+        helmet.addUnsafeEnchantment(Enchantment.PROTECTION, 7);
+        helmet.addUnsafeEnchantment(Enchantment.PROJECTILE_PROTECTION, 4);
 
         ArrayList<String> lore = new ArrayList<>();
         lore.add("Unbreakable");
@@ -186,8 +186,8 @@ public class Armor {
 
     private static void createDevilChestplate() {
         ItemStack chestplate = new ItemStack(Material.DIAMOND_CHESTPLATE);
-        chestplate.addUnsafeEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 7);
-        chestplate.addUnsafeEnchantment(Enchantment.PROTECTION_EXPLOSIONS, 4);
+        chestplate.addUnsafeEnchantment(Enchantment.PROTECTION, 7);
+        chestplate.addUnsafeEnchantment(Enchantment.BLAST_PROTECTION, 4);
 
         ArrayList<String> lore = new ArrayList<>();
         lore.add("Unbreakable");
@@ -213,7 +213,7 @@ public class Armor {
 
     private static void createDevilPants() {
         ItemStack pants = new ItemStack(Material.DIAMOND_LEGGINGS);
-        pants.addUnsafeEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 7);
+        pants.addUnsafeEnchantment(Enchantment.PROTECTION, 7);
         pants.addUnsafeEnchantment(Enchantment.THORNS, 3);
 
         ArrayList<String> lore = new ArrayList<>();
@@ -240,8 +240,8 @@ public class Armor {
 
     private static void createDevilBoots() {
         ItemStack boots = new ItemStack(Material.DIAMOND_BOOTS);
-        boots.addUnsafeEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 7);
-        boots.addUnsafeEnchantment(Enchantment.PROTECTION_FALL, 4);
+        boots.addUnsafeEnchantment(Enchantment.PROTECTION, 7);
+        boots.addUnsafeEnchantment(Enchantment.FEATHER_FALLING, 4);
 
         ArrayList<String> lore = new ArrayList<>();
         lore.add("Unbreakable");

@@ -43,7 +43,7 @@ public class CustomItemEnchants implements Listener {
 
                 // Nausea
                 if (lore.contains("§6Nausea")) {
-                    ((LivingEntity) damaged).addPotionEffect(new PotionEffect(PotionEffectType.CONFUSION, 10*20, 4, false, false));
+                    ((LivingEntity) damaged).addPotionEffect(new PotionEffect(PotionEffectType.NAUSEA, 10*20, 4, false, false));
                 }
 
                 // Venom
@@ -100,7 +100,7 @@ public class CustomItemEnchants implements Listener {
 
         if (item.getItemMeta() != null && item.getItemMeta().getLore() != null) {
             if (item.getItemMeta().getLore().contains("§6Ether Surge")) {
-                player.addPotionEffect(new PotionEffect(PotionEffectType.FAST_DIGGING, 3*20, 2, false, false));
+                player.addPotionEffect(new PotionEffect(PotionEffectType.HASTE, 3*20, 2, false, false));
             }
 
             if (item.getItemMeta().getLore().contains("§6Blast Mining")) {

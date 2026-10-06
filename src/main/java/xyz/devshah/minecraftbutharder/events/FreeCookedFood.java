@@ -76,7 +76,7 @@ public class FreeCookedFood implements Listener {
             if (dropRare(0.35)) { dropItem(entity, Material.BONE_MEAL, 1); }
         }
 
-        if (entity.getType() == EntityType.MUSHROOM_COW) {
+        if (entity.getType() == EntityType.MOOSHROOM) {
             event.getDrops().clear();
             event.setDroppedExp((int) (event.getDroppedExp()/plugin.getConfig().getDouble("exp.animal-exp-divider")));
 

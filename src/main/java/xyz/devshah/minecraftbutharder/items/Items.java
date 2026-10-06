@@ -21,8 +21,8 @@ public class Items {
 
     private static void createEtherealPickaxe() {
         ItemStack pickaxe = new ItemStack(Material.DIAMOND_PICKAXE, 1);
-        pickaxe.addEnchantment(Enchantment.DIG_SPEED, 4);
-        pickaxe.addEnchantment(Enchantment.LOOT_BONUS_BLOCKS, 2);
+        pickaxe.addEnchantment(Enchantment.EFFICIENCY, 4);
+        pickaxe.addEnchantment(Enchantment.FORTUNE, 2);
 
         ArrayList<String> lore = new ArrayList<>();
         lore.add("Unbreakable");
@@ -43,7 +43,7 @@ public class Items {
 
     private static void createServantShovel() {
         ItemStack shovel = new ItemStack(Material.DIAMOND_SHOVEL, 1);
-        shovel.addEnchantment(Enchantment.DIG_SPEED, 4);
+        shovel.addEnchantment(Enchantment.EFFICIENCY, 4);
         shovel.addUnsafeEnchantment(Enchantment.KNOCKBACK, 5);
 
         ArrayList<String> lore = new ArrayList<>();
@@ -66,8 +66,8 @@ public class Items {
 
     private static void createMinerFriend() {
         ItemStack pickaxe = new ItemStack(Material.DIAMOND_PICKAXE, 1);
-        pickaxe.addUnsafeEnchantment(Enchantment.DIG_SPEED, 5);
-        pickaxe.addUnsafeEnchantment(Enchantment.LOOT_BONUS_BLOCKS, 3);
+        pickaxe.addUnsafeEnchantment(Enchantment.EFFICIENCY, 5);
+        pickaxe.addUnsafeEnchantment(Enchantment.FORTUNE, 3);
 
         ArrayList<String> lore = new ArrayList<>();
         lore.add("Unbreakable");

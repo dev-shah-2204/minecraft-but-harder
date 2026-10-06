@@ -36,7 +36,7 @@ public class ZombieBossEvents implements Listener {
         chicken.addPassenger(rider);
 
         ((Chicken) chicken).addPotionEffect(new PotionEffect(PotionEffectType.SPEED, Integer.MAX_VALUE, 4));
-        ((Chicken) chicken).addPotionEffect(new PotionEffect(PotionEffectType.JUMP, Integer.MAX_VALUE, 3));
+        ((Chicken) chicken).addPotionEffect(new PotionEffect(PotionEffectType.JUMP_BOOST, Integer.MAX_VALUE, 3));
         ((Chicken) chicken).addPotionEffect(new PotionEffect(PotionEffectType.SLOW_FALLING, Integer.MAX_VALUE, 0));
         ((Chicken) chicken).setTarget(player);
     }
