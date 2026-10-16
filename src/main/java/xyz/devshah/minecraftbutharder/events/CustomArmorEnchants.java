@@ -1,25 +1,28 @@
 package xyz.devshah.minecraftbutharder.events;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
 import org.bukkit.Bukkit;
 import org.bukkit.Sound;
-import org.bukkit.entity.*;
+import org.bukkit.entity.Arrow;
+import org.bukkit.entity.Entity;
+import org.bukkit.entity.EntityType;
+import org.bukkit.entity.IronGolem;
+import org.bukkit.entity.LivingEntity;
+import org.bukkit.entity.Player;
+import org.bukkit.entity.Wolf;
+import org.bukkit.entity.Zombie;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
-
-/* https://github.com/Arnuh/ArmorEquipEvent
- *https://www.spigotmc.org/resources/lib-armorequipevent.5478/
- */
-import com.codingforcookies.armorequip.ArmorEquipEvent;
-import xyz.devshah.minecraftbutharder.MinecraftButHarder;
-
 import org.bukkit.util.Vector;
 
-import java.util.List;
-import java.util.Random;
+import xyz.devshah.minecraftbutharder.MinecraftButHarder;
 
 
 public class CustomArmorEnchants implements Listener {
@@ -27,45 +30,70 @@ public class CustomArmorEnchants implements Listener {
     public CustomArmorEnchants(MinecraftButHarder plugin) { this.plugin = plugin; }
 
     private void addEffect(Player player, PotionEffectType type, Integer amplifer) {
-        player.addPotionEffect(new PotionEffect(type, Integer.MAX_VALUE, amplifer, false, false, true));
+        player.addPotionEffect(new PotionEffect(type, PotionEffect.INFINITE_DURATION, amplifer, false, false, true));
     }
 
-    @EventHandler
-    public void onArmorEquip(ArmorEquipEvent event) {
-        ItemStack newArmor = event.getNewArmorPiece();
-        ItemStack oldArmor = event.getOldArmorPiece();
-        Player player = event.getPlayer();
-
-        if (newArmor != null && newArmor.getItemMeta() != null && newArmor.getItemMeta().getLore() != null) {
-            List<String> lore = newArmor.getItemMeta().getLore();
-
-            if (lore.contains("§6Respiration")) { addEffect(player, PotionEffectType.WATER_BREATHING, 0);}
-            if (lore.contains("§6Night Vision")) { addEffect(player, PotionEffectType.NIGHT_VISION, 0); }
-            if (lore.contains("§6Speed")) { addEffect(player, PotionEffectType.SPEED, 1); }
-            if (lore.contains("§6Saturation")) { addEffect(player, PotionEffectType.SATURATION, 1); }
-            if (lore.contains("§6Fire Resistance")) { addEffect(player, PotionEffectType.FIRE_RESISTANCE, 0); }
-            if (lore.contains("§6Jump Boost")) { addEffect(player, PotionEffectType.JUMP_BOOST, 0); }
-            if (lore.contains("§6Dolphin's Grace")) { addEffect(player, PotionEffectType.DOLPHINS_GRACE, 0); }
-            if (lore.contains("§6Absorbtion")) { addEffect(player, PotionEffectType.ABSORPTION, 1); }
-            if (lore.contains("§6Health Boost")) { addEffect(player, PotionEffectType.HEALTH_BOOST, 2); }
+    private void removeEffect(Player player, PotionEffectType type) {
+        if (player.hasPotionEffect(type)) {
+            PotionEffect effect = player.getPotionEffect(type);
+            if (effect.isInfinite()) {
+                player.removePotionEffect(type);
+            }
         }
-
-        if (oldArmor != null && oldArmor.getItemMeta() != null && oldArmor.getItemMeta().getLore() != null) {
-            List<String> lore = oldArmor.getItemMeta().getLore();
-
-            if (lore.contains("§6Night Vision")) { player.removePotionEffect(PotionEffectType.NIGHT_VISION); }
-            if (lore.contains("§6Respiration")) { player.removePotionEffect(PotionEffectType.WATER_BREATHING); }
-            if  (lore.contains("§6Speed")) { player.removePotionEffect(PotionEffectType.SPEED); }
-            if (lore.contains("§6Saturation")) { player.removePotionEffect(PotionEffectType.SATURATION); }
-            if (lore.contains("§6Fire Resistance")) { player.removePotionEffect(PotionEffectType.FIRE_RESISTANCE); }
-            if (lore.contains("§6Jump Boost")) { player.removePotionEffect(PotionEffectType.JUMP_BOOST); }
-            if (lore.contains("§6Dolphin's Grace")) { player.removePotionEffect(PotionEffectType.DOLPHINS_GRACE); }
-            if (lore.contains("§6Health Boost")) { player.removePotionEffect(PotionEffectType.HEALTH_BOOST); }
-            if (lore.contains("§6Absorbtion")) { player.removePotionEffect(PotionEffectType.ABSORPTION); }
-        }
-
     }
 
+    private List<String> getLore(ItemStack armor) {
+        if (armor != null && armor.hasItemMeta() && armor.getItemMeta().hasLore()) {
+            return armor.getItemMeta().getLore();
+        }
+        return new ArrayList<>();
+    }
+
+    public void applyArmorEffects() {
+        for (Player player : Bukkit.getServer().getOnlinePlayers()) {
+            List<String> helmetLore = getLore(player.getInventory().getHelmet());
+            List<String> chestplateLore = getLore(player.getInventory().getChestplate());
+            List<String> leggingsLore = getLore(player.getInventory().getLeggings());
+            List<String> bootsLore = getLore(player.getInventory().getBoots());
+
+            // Helmet
+            if (helmetLore.contains("§6Respiration")) { addEffect(player, PotionEffectType.WATER_BREATHING, 0); }
+            else { removeEffect(player, PotionEffectType.WATER_BREATHING); }
+
+            if (helmetLore.contains("§6Night Vision")) { addEffect(player, PotionEffectType.NIGHT_VISION, 0); }
+            else { removeEffect(player, PotionEffectType.NIGHT_VISION); }
+
+            // Chestplate
+            if (chestplateLore.contains("§6Absorption")) {
+                if (!(player.hasPotionEffect(PotionEffectType.ABSORPTION))) { addEffect(player, PotionEffectType.ABSORPTION, 1); }
+            } else {
+                removeEffect(player, PotionEffectType.ABSORPTION);
+            }
+
+            if (chestplateLore.contains("§6Health Boost")) {
+                if (!(player.hasPotionEffect(PotionEffectType.HEALTH_BOOST))) { addEffect(player, PotionEffectType.HEALTH_BOOST, 2); }
+            } else {
+                removeEffect(player, PotionEffectType.HEALTH_BOOST);
+            }
+
+            // Leggings
+            if (leggingsLore.contains("§6Saturation")) { addEffect(player, PotionEffectType.SATURATION, 1); }
+            else { removeEffect(player, PotionEffectType.SATURATION); }
+
+            if (leggingsLore.contains("§6Fire Resistance")) { addEffect(player, PotionEffectType.FIRE_RESISTANCE, 0); }
+            else { removeEffect(player, PotionEffectType.FIRE_RESISTANCE); }
+
+            // Boots
+            if (bootsLore.contains("§6Speed")) { addEffect(player, PotionEffectType.SPEED, 1); }
+            else { removeEffect(player, PotionEffectType.SPEED); }
+
+            if (bootsLore.contains("§6Jump Boost")) { addEffect(player, PotionEffectType.JUMP_BOOST, 0); }
+            else { removeEffect(player, PotionEffectType.JUMP_BOOST); }
+
+            if (bootsLore.contains("§6Dolphin's Grace")) { addEffect(player, PotionEffectType.DOLPHINS_GRACE, 0); }
+            else { removeEffect(player, PotionEffectType.DOLPHINS_GRACE); }
+        }
+    }
 
     @EventHandler
     public void onEntityDamagePlayer(EntityDamageByEntityEvent event) {
@@ -121,7 +149,6 @@ public class CustomArmorEnchants implements Listener {
                         ((IronGolem) golem).addPotionEffect(new PotionEffect(PotionEffectType.STRENGTH, Integer.MAX_VALUE, 1, false, false));
 
                         Bukkit.getServer().getScheduler().runTaskLater(plugin, golem::remove, 30*20);
-
                     }
                 }
 
@@ -146,9 +173,7 @@ public class CustomArmorEnchants implements Listener {
                             shooter.teleport(damaged.getLocation().add(2, 0, 2));
                         }
                     }
-
                 }
-
             }
 
 
@@ -161,7 +186,6 @@ public class CustomArmorEnchants implements Listener {
                     damaged.setVelocity(velocity);
                     ((Player) damaged).addPotionEffect(new PotionEffect(PotionEffectType.SLOW_FALLING, 4*20, 1, false, false, true));
                     damaged.sendMessage("§aYou took the leap of faith!");
-
                 }
             }
 
