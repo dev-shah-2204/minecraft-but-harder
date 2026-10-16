@@ -1,12 +1,12 @@
 package xyz.devshah.minecraftbutharder.items;
 
+import java.util.ArrayList;
+
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-
-import java.util.ArrayList;
 
 public class Armor {
     public static ItemStack oldSafetyHelmet;
@@ -159,7 +159,7 @@ public class Armor {
 
     // Devil's Armor set
     private static void createDevilHelmet() {
-        ItemStack helmet = new ItemStack(Material.DIAMOND_HELMET);
+        ItemStack helmet = new ItemStack(Material.NETHERITE_HELMET);
         helmet.addUnsafeEnchantment(Enchantment.PROTECTION, 7);
         helmet.addUnsafeEnchantment(Enchantment.PROJECTILE_PROTECTION, 4);
 
@@ -185,7 +185,7 @@ public class Armor {
     }
 
     private static void createDevilChestplate() {
-        ItemStack chestplate = new ItemStack(Material.DIAMOND_CHESTPLATE);
+        ItemStack chestplate = new ItemStack(Material.NETHERITE_CHESTPLATE);
         chestplate.addUnsafeEnchantment(Enchantment.PROTECTION, 7);
         chestplate.addUnsafeEnchantment(Enchantment.BLAST_PROTECTION, 4);
 
@@ -212,7 +212,7 @@ public class Armor {
     }
 
     private static void createDevilPants() {
-        ItemStack pants = new ItemStack(Material.DIAMOND_LEGGINGS);
+        ItemStack pants = new ItemStack(Material.NETHERITE_LEGGINGS);
         pants.addUnsafeEnchantment(Enchantment.PROTECTION, 7);
         pants.addUnsafeEnchantment(Enchantment.THORNS, 3);
 
@@ -239,7 +239,7 @@ public class Armor {
     }
 
     private static void createDevilBoots() {
-        ItemStack boots = new ItemStack(Material.DIAMOND_BOOTS);
+        ItemStack boots = new ItemStack(Material.NETHERITE_BOOTS);
         boots.addUnsafeEnchantment(Enchantment.PROTECTION, 7);
         boots.addUnsafeEnchantment(Enchantment.FEATHER_FALLING, 4);
 
