@@ -17,6 +17,7 @@ import org.bukkit.entity.Zombie;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
+import org.bukkit.event.entity.EntityExhaustionEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
@@ -76,10 +77,6 @@ public class CustomArmorEnchants implements Listener {
                 removeEffect(player, PotionEffectType.HEALTH_BOOST);
             }
 
-            // Leggings
-            if (leggingsLore.contains("§6Saturation")) { addEffect(player, PotionEffectType.SATURATION, 1); }
-            else { removeEffect(player, PotionEffectType.SATURATION); }
-
             if (leggingsLore.contains("§6Fire Resistance")) { addEffect(player, PotionEffectType.FIRE_RESISTANCE, 0); }
             else { removeEffect(player, PotionEffectType.FIRE_RESISTANCE); }
 
@@ -94,6 +91,19 @@ public class CustomArmorEnchants implements Listener {
             else { removeEffect(player, PotionEffectType.DOLPHINS_GRACE); }
         }
     }
+
+    @EventHandler 
+    public void onHungerIncrease(EntityExhaustionEvent event) {
+        Player player = (Player) event.getEntity();
+        ItemStack leggings = player.getInventory().getLeggings();
+
+        if (leggings != null && leggings.getItemMeta() != null && leggings.getItemMeta().getLore() != null && leggings.getItemMeta().getLore().contains("§6Saturation")) {
+            event.setExhaustion(event.getExhaustion() / 2);
+            
+        }
+    }
+    
+
 
     @EventHandler
     public void onEntityDamagePlayer(EntityDamageByEntityEvent event) {

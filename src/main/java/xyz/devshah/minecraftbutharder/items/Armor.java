@@ -157,6 +157,25 @@ public class Armor {
         forbiddenImperviousBoots = boots;
     }
 
+    private static void createGodHelmet() {
+        ItemStack helmet = new ItemStack(Material.DIAMOND_HELMET);
+        helmet.addUnsafeEnchantment(Enchantment.PROTECTION, 6);
+        helmet.addUnsafeEnchantment(Enchantment.PROJECTILE_PROTECTION, 4);
+
+        ArrayList<String> lore = new ArrayList<>();
+        lore.add("Unbreakable");
+        lore.add("§6Night Vision");
+        lore.add("§6Respiration");
+        lore.add("§6Thunderstruck");
+        lore.add("§6Stormborn");
+        
+
+    }
+
+    private static void createGodChestplate() {}
+    private static void createGodLeggings() {}
+    private static void createGodBoots() {}
+
     // Devil's Armor set
     private static void createDevilHelmet() {
         ItemStack helmet = new ItemStack(Material.NETHERITE_HELMET);
@@ -220,7 +239,7 @@ public class Armor {
         lore.add("Unbreakable");
         lore.add("§6Fire Resistance");
         lore.add("§6Saturation");
-        lore.add("§6Leap of Faith");
+        // lore.add("§6Leap of Faith");
         lore.add("§oPart of the Devil's Armor set");
         lore.add("§4It's quite difficult to wear");
         lore.add("§4heavy pants in the heat of the");
@@ -245,7 +264,8 @@ public class Armor {
 
         ArrayList<String> lore = new ArrayList<>();
         lore.add("Unbreakable");
-        lore.add("§6Dolphin's Grace");
+        // lore.add("§6Dolphin's Grace");
+        lore.add("§6Molten Glide");
         lore.add("§6Undead Army");
         lore.add("§6Speed");
         lore.add("§6Jump Boost");
