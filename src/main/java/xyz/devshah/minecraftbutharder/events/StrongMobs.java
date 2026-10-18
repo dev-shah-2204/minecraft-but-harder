@@ -3,6 +3,7 @@ package xyz.devshah.minecraftbutharder.events;
 import java.util.Random;
 
 import org.bukkit.Material;
+import org.bukkit.attribute.Attribute;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Chicken;
 import org.bukkit.entity.Creeper;
@@ -162,7 +163,7 @@ public class StrongMobs implements Listener {
         }
 
         if (entity instanceof Creeper) {
-            ((LivingEntity) entity).setHealth(Math.min(plugin.getConfig().getInt("mobs.creeper-health"), ((LivingEntity) entity).getMaxHealth()));
+            ((LivingEntity) entity).setHealth(Math.min(plugin.getConfig().getInt("mobs.creeper-health"), ((LivingEntity) entity).getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue()));
             ((LivingEntity) entity).addPotionEffect(new PotionEffect(PotionEffectType.SPEED, Integer.MAX_VALUE, plugin.getConfig().getInt("mobs.creeper-speed"), false, false));
         }
 
