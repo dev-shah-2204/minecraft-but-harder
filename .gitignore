@@ -116,3 +116,5 @@ run/
 .project
 .settings
 temp
+
+.vscode
