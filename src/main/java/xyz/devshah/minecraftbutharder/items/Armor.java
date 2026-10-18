@@ -193,7 +193,7 @@ public class Armor {
         lore.add("Unbreakable");
         lore.add("§6Aura of Pain");
         lore.add("§6Devil's Invitation");
-        lore.add("§6Absorbtion");
+        lore.add("§6Absorption");
         lore.add("§6Health Boost");
         lore.add("§oPart of the Devil's Armor set");
         lore.add("§4The idea originally was to equip");
