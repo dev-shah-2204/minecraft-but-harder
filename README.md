@@ -2,22 +2,22 @@
 
 ## What does the plugin do?
 
-The game is quite easy now. This plugin makes the game difficult. Two hits from a zombie and you're dead. Invisible spiders and super-fast creepers. It cannot get worse, right? Well, Endermen won't be dropping Ender Pearls. Yeah.
+The game is quite easy now. This plugin makes the game difficult. Two hits from a zombie and you're dead. Invisible spiders, super-fast creepers and a few more surprises. Also endermen don't drop ender pearls anymore. 
 
-How do you beat the game? You summon the Zombie Boss using ***/spawnboss.***
-The Zombie boss drops 25 Eyes of Ender, 64 Ender Pearls and a really cool combat set when you beat him. 13 more than you need to complete and empty portal.
+How do you get to the end? You summon the Withered Sovereign using ***/spawnboss.***
+Winning the boss fight grants you 25 Eyes of Ender, 64 Ender Pearls and a really cool armor set and a sword. 13 more eyes than you need to complete an empty portal. If you need more, you can go for another boss fight.
 
-But don't worry, there's a good part too. You get a cool reward every 5 xp levels. These include armor, tools and weapons with custom enchantments!<br>
-Secondly, when you die, your precious items get stored in a chest at the spot that you died and you're given that spot's coordinates. You don't wanna lose that stuff, right?
+To balance this out, players are granted cool rewards every 5 levels, which include armor, weapons and tools with unordinary enchantments. 
 
-Moreover, you get the cooked variant of the food that an animal would usually drop.
-Cooked Porkchop instead of Porkchop, Steak instead of Beef, Cooked Mutton instead of Raw Mutton etc.
+Secondly, upon dying, rather than trying to find the same spot and dying again and again and ultimately losing your hard earned items, they get stored in a grave and the location is sent to you in chat.
+
+Moreover, you get the cooked variant of the food that an animal would usually drop. Cooked Porkchop instead of Porkchop, Steak instead of Beef, Cooked Mutton instead of Raw Mutton etc.
+
+Lastly, there is an xp gain multiplier to progress the story faster. Most of these plugin settings can be customised in [`config.yml`](src/main/resources/config.yml).
 
 ## Setup
 
-Save the MinecraftButHarder jar file in the plugins folder of your server, along with `ArmorEquipEvent-1.7.2.jar`. The plugin relies on this other plugin for the custom armor enchantments to work. 
-
-After running the server, you will see a `config.yml` file in the plugins folder, which you can edit to turn on/off certain features and edit settings like creeper speed, air guardian spawn chance, boss fight settings, exp gain multiplier, custom item enchantment settings etc..
+After running the server, you will see a [`config.yml`](src/main/resources/config.yml) file in the plugins folder, which you can edit to turn on/off certain features and edit settings like creeper speed, air guardian spawn chance, boss fight settings, exp gain multiplier, custom item enchantment settings etc..
 
 ## Commands
 
@@ -51,7 +51,3 @@ Description: Give custom items that the plugin offers<br>
 Usage: /givecustom \<item\> [player]
 
 <br>
-
-***IMPORTANT:***
-
-- If you wish to edit this code, you'll need to change the systemPath to where you save the ArmorEquipEvent-1.7.2.jar file in the pom.xml file. 
