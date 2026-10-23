@@ -118,3 +118,6 @@ run/
 temp
 
 .vscode
+
+# Claude notes (personal, not for the repo)
+claude-notes.md
