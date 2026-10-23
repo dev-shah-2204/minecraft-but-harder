@@ -107,6 +107,26 @@ public class ExpRewards implements Listener {
             server.broadcastMessage(player.getDisplayName() + " got the §eMiner's Best Friend§r!");
             giveItem(player, Items.minerFriend);
         }
+
+        if (newLevel == 70) {
+            server.broadcastMessage(player.getDisplayName() + " got the §b§kMine§r §eZeus' Helm §kMine§r!");
+            giveItem(player, Armor.godHelmet);
+        }
+
+        if (newLevel == 75) {
+            server.broadcastMessage(player.getDisplayName() + " got the §b§kMine§r §eAres' Breastplate §kMine§r!");
+            giveItem(player, Armor.godChestplate);
+        }
+
+        if (newLevel == 80) {
+            server.broadcastMessage(player.getDisplayName() + " got the §b§kMine§r §ePerseus' Greaves §kMine§r!");
+            giveItem(player, Armor.godLeggings);
+        }
+
+        if (newLevel == 85) {
+            server.broadcastMessage(player.getDisplayName() + " got the §b§kMine§r §ePoseidon's Tidewalkers §kMine§r!");
+            giveItem(player, Armor.godBoots);
+        }
     }
 
 }
