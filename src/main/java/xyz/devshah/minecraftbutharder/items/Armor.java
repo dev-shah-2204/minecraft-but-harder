@@ -16,6 +16,11 @@ public class Armor {
     public static ItemStack forbiddenImperviousLeggings;
     public static ItemStack forbiddenImperviousBoots;
 
+    public static ItemStack godHelmet;
+    public static ItemStack godChestplate;
+    public static ItemStack godLeggings;
+    public static ItemStack godBoots;
+
     public static ItemStack asmodiusChestplate;
     public static ItemStack beelzebubHelmet;
     public static ItemStack mammonLeggings;
@@ -39,8 +44,8 @@ public class Armor {
     private static void createNightCap() {
         ItemStack nightVisionHelmet = new ItemStack(Material.LEATHER_HELMET);
 
-        nightVisionHelmet.addEnchantment(Enchantment.VANISHING_CURSE, 1);
-        nightVisionHelmet.addEnchantment(Enchantment.UNBREAKING, 2);
+        nightVisionHelmet.addUnsafeEnchantment(Enchantment.VANISHING_CURSE, 1);
+        nightVisionHelmet.addUnsafeEnchantment(Enchantment.UNBREAKING, 2);
 
         ItemMeta meta = nightVisionHelmet.getItemMeta();
         ArrayList<String> lore = new ArrayList<>();
@@ -56,8 +61,8 @@ public class Armor {
     // Forbidden Imeprvious Set
     private static void createForbiddenImperviousHelmet() {
         ItemStack helmet = new ItemStack(Material.IRON_HELMET);
-        helmet.addEnchantment(Enchantment.PROTECTION, 4);
-        helmet.addEnchantment(Enchantment.PROJECTILE_PROTECTION, 2);
+        helmet.addUnsafeEnchantment(Enchantment.PROTECTION, 4);
+        helmet.addUnsafeEnchantment(Enchantment.PROJECTILE_PROTECTION, 2);
 
         ItemMeta meta = helmet.getItemMeta();
         meta.setDisplayName("§9Forbidden Impervious Helmet");
@@ -83,13 +88,8 @@ public class Armor {
 
     private static void createForbiddenImperviousChestplate() {
         ItemStack imperviousChestplate = new ItemStack(Material.IRON_CHESTPLATE);
-        imperviousChestplate.addEnchantment(Enchantment.PROTECTION, 4);
-        imperviousChestplate.addEnchantment(Enchantment.BLAST_PROTECTION, 2);
-
-        ItemMeta meta = imperviousChestplate.getItemMeta();
-        meta.setDisplayName("§9Forbidden Impervious Chestplate");
-        meta.addItemFlags(ItemFlag.HIDE_UNBREAKABLE);
-        meta.setUnbreakable(true);
+        imperviousChestplate.addUnsafeEnchantment(Enchantment.PROTECTION, 4);
+        imperviousChestplate.addUnsafeEnchantment(Enchantment.BLAST_PROTECTION, 2);
 
         ArrayList<String> lore = new ArrayList<>();
         lore.add("Unbreakable");
@@ -99,20 +99,25 @@ public class Armor {
         lore.add("§6A chestplate of ancient origin,");
         lore.add("§6made by the best of the blacksmiths");
         lore.add("§6of that time.");
-
+        
+        ItemMeta meta = imperviousChestplate.getItemMeta();
+        meta.setDisplayName("§9Forbidden Impervious Chestplate");
         meta.setLore(lore);
-        imperviousChestplate.setItemMeta(meta);
+        meta.addItemFlags(ItemFlag.HIDE_UNBREAKABLE);
+        meta.setUnbreakable(true);
 
+        imperviousChestplate.setItemMeta(meta);
         forbiddenImperviousChestplate = imperviousChestplate;
     }
 
     private static void createForbiddenImperviousLeggings() {
         ItemStack leggings = new ItemStack(Material.IRON_LEGGINGS);
-        leggings.addEnchantment(Enchantment.PROTECTION, 4);
+        leggings.addUnsafeEnchantment(Enchantment.PROTECTION, 4);
+        leggings.addUnsafeEnchantment(Enchantment.FIRE_PROTECTION, 4);
 
         ArrayList<String> lore = new ArrayList<>();
         lore.add("Unbreakable");
-        lore.add("§6Fire Resistance");
+        // lore.add("§6Fire Resistance");
         lore.add("§6Saturation");
         lore.add("§o§5Part of the Forbidden Impervious set§r");
         lore.add("§6These leggings belonged to");
@@ -134,13 +139,13 @@ public class Armor {
     private static void createForbiddenImperviousBoots() {
         ItemStack boots = new ItemStack(Material.IRON_BOOTS);
         boots.addUnsafeEnchantment(Enchantment.PROTECTION, 4);
-        boots.addUnsafeEnchantment(Enchantment.FEATHER_FALLING, 3);
+        boots.addUnsafeEnchantment(Enchantment.FEATHER_FALLING, 2);
 
         ArrayList<String> lore = new ArrayList<>();
         lore.add("Unbreakable");
         lore.add("§6Beastly Aura");
         lore.add("§6Speed");
-        lore.add("§0§5Part of the Forbidden Impervious set§r");
+        lore.add("§o§5Part of the Forbidden Impervious set§r");
         lore.add("§6These boots are quite common");
         lore.add("§6among the wolf tamers of");
         lore.add("§6Almohad Caliphate, you'll");
@@ -168,15 +173,104 @@ public class Armor {
         lore.add("§6Respiration");
         lore.add("§6Thunderstruck");
         lore.add("§6Stormborn");
-        
+        lore.add("§o§5Part of the Olympian set§r");
+        lore.add("§6From Olympus, Zeus watched every");
+        lore.add("§6mortal, day and night. Now you");
+        lore.add("§6see what he saw. And whoever");
+        lore.add("§6strikes you, he strikes them too");
 
+        ItemMeta meta = helmet.getItemMeta();
+        meta.setDisplayName("§b§kMine§r §eZeus' Helm §kMine§r");
+        meta.setLore(lore);
+        meta.setUnbreakable(true);
+        meta.addItemFlags(ItemFlag.HIDE_UNBREAKABLE);
+
+        helmet.setItemMeta(meta);
+        godHelmet = helmet;
     }
 
-    private static void createGodChestplate() {}
-    private static void createGodLeggings() {}
-    private static void createGodBoots() {}
+    private static void createGodChestplate() {
+        ItemStack chestplate = new ItemStack(Material.DIAMOND_CHESTPLATE);
+        chestplate.addUnsafeEnchantment(Enchantment.PROTECTION, 6);
+        chestplate.addUnsafeEnchantment(Enchantment.BLAST_PROTECTION, 3);
 
-    // Devil's Armor set
+        ArrayList<String> lore = new ArrayList<>();
+        lore.add("Unbreakable");
+        lore.add("§6Divine Intervention");
+        lore.add("§6Adrenaline");
+        lore.add("§6Absorption");
+        lore.add("§5Part of the Olympian Armor set");
+        lore.add("§6Ares lost almost every war he");
+        lore.add("§6started, yet he never died. Now");
+        lore.add("§6you know why. Even death seems");
+        lore.add("§6to refuse whoever wears it.");
+
+        ItemMeta meta = chestplate.getItemMeta();
+        meta.setDisplayName("§b§kMine§r §eAres' Breastplate §kMine§r");
+        meta.setUnbreakable(true);
+        meta.addItemFlags(ItemFlag.HIDE_UNBREAKABLE);
+        meta.setLore(lore);
+        
+        chestplate.setItemMeta(meta);
+        godChestplate = chestplate;
+    }
+
+    private static void createGodLeggings() {
+        //Perseus' Greaves
+        ItemStack leggings = new ItemStack(Material.DIAMOND_LEGGINGS);
+        leggings.addUnsafeEnchantment(Enchantment.PROTECTION, 6);
+        leggings.addUnsafeEnchantment(Enchantment.FIRE_PROTECTION, 6);
+
+        ArrayList<String> lore = new ArrayList<>();
+        lore.add("Unbreakable");
+        lore.add("§6Medusa's gaze");
+        lore.add("§6Mirror Shield");
+        lore.add("§6Shadowstep");
+        lore.add("§5Part of the Olympian Armor set");
+        lore.add("§6Perseus wore these the day he");
+        lore.add("§6beheaded Medusa. Her gaze still");
+        lore.add("§6lingers in the fabric, so maybe");
+        lore.add("§6don't look down while wearing them");
+        
+        ItemMeta meta = leggings.getItemMeta();
+        meta.setDisplayName("§b§kMine§r §ePerseus' Greaves §kMine§r");
+        meta.setUnbreakable(true);
+        meta.addItemFlags(ItemFlag.HIDE_UNBREAKABLE);
+        meta.setLore(lore);    
+        
+        leggings.setItemMeta(meta);
+        godLeggings = leggings;
+    }
+
+    private static void createGodBoots() {
+        ItemStack boots = new ItemStack(Material.DIAMOND_BOOTS);
+        // boots.addUnsafeEnchantment(Enchantment.DEPTH_STRIDER, 2);
+        boots.addUnsafeEnchantment(Enchantment.PROTECTION, 6);
+        boots.addUnsafeEnchantment(Enchantment.FROST_WALKER, 1);
+        
+        ArrayList<String> lore = new ArrayList<>();
+        lore.add("Unbreakable");
+        lore.add("§6Speed");
+        lore.add("§6Earthshaker");
+        lore.add("§6Dolphin's Grace");
+        lore.add("§6Tidal Wave");
+        lore.add("§5Part of the Olympian Armor set");
+        lore.add("§6Poseidon could shake the earth");
+        lore.add("§6with one stomp and raise the sea");
+        lore.add("§6with another. Maybe it was the");
+        lore.add("§6power of these boots?");
+
+        ItemMeta meta = boots.getItemMeta();
+        meta.setDisplayName("§b§kMine§r §ePoseidon's Tidewalkers §kMine§r");
+        meta.setUnbreakable(true);
+        meta.addItemFlags(ItemFlag.HIDE_UNBREAKABLE);
+        meta.setLore(lore);
+
+        boots.setItemMeta(meta);
+        godBoots = boots;
+    }
+
+    // Hellforged Armor set
     private static void createDevilHelmet() {
         ItemStack helmet = new ItemStack(Material.NETHERITE_HELMET);
         helmet.addUnsafeEnchantment(Enchantment.PROTECTION, 7);
@@ -187,7 +281,7 @@ public class Armor {
         lore.add("§6Night Vision");
         lore.add("§6Respiration");
         lore.add("§6Tracker");
-        lore.add("§oPart of the Devil's Armor set");
+        lore.add("§oPart of the Hellforged Armor set");
         lore.add("§4A helmet forged with dark matter");
         lore.add("§4found in Sheol, a place of darkness");
         lore.add("§4where the dead go, that has the");
@@ -210,11 +304,11 @@ public class Armor {
 
         ArrayList<String> lore = new ArrayList<>();
         lore.add("Unbreakable");
-        lore.add("§6Aura of Pain");
+        lore.add("§6Life Steal");
         lore.add("§6Devil's Invitation");
         lore.add("§6Absorption");
         lore.add("§6Health Boost");
-        lore.add("§oPart of the Devil's Armor set");
+        lore.add("§oPart of the Hellforged Armor set");
         lore.add("§4The idea originally was to equip");
         lore.add("§4the devil with a grappling hook,");
         lore.add("§4but the wizards from Eden had other");
@@ -239,8 +333,9 @@ public class Armor {
         lore.add("Unbreakable");
         lore.add("§6Fire Resistance");
         lore.add("§6Saturation");
+        lore.add("§6Undead Army");
         // lore.add("§6Leap of Faith");
-        lore.add("§oPart of the Devil's Armor set");
+        lore.add("§oPart of the Hellforged Armor set");
         lore.add("§4It's quite difficult to wear");
         lore.add("§4heavy pants in the heat of the");
         lore.add("§4inferno, but you should be fine");
@@ -266,10 +361,9 @@ public class Armor {
         lore.add("Unbreakable");
         // lore.add("§6Dolphin's Grace");
         lore.add("§6Molten Glide");
-        lore.add("§6Undead Army");
         lore.add("§6Speed");
         lore.add("§6Jump Boost");
-        lore.add("§oPart of the Devil's Armor set");
+        lore.add("§oPart of the Hellforged Armor set");
         lore.add("§4Boots so light that they take");
         lore.add("§4make you lighter than you are.");
         lore.add("§4Made from ether, they give you");
