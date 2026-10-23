@@ -33,6 +33,12 @@ public class Armor {
         createForbiddenImperviousChestplate();
         createForbiddenImperviousLeggings();
         createForbiddenImperviousBoots();
+        
+        // God Set
+        createGodHelmet();
+        createGodChestplate();
+        createGodLeggings();
+        createGodBoots();
 
         // Devil Set
         createDevilHelmet();
