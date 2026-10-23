@@ -1,23 +1,40 @@
 package xyz.devshah.minecraftbutharder.events;
 
 
-import org.bukkit.*;
+import java.util.List;
+import java.util.Random;
+
+import org.bukkit.Bukkit;
+import org.bukkit.Location;
+import org.bukkit.Material;
+import org.bukkit.Sound;
+import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.block.Chest;
-import org.bukkit.entity.*;
+import org.bukkit.entity.Arrow;
+import org.bukkit.entity.Chicken;
+import org.bukkit.entity.Entity;
+import org.bukkit.entity.EntityType;
+import org.bukkit.entity.IronGolem;
+import org.bukkit.entity.LivingEntity;
+import org.bukkit.entity.Player;
+import org.bukkit.entity.Vex;
+import org.bukkit.entity.Zombie;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.entity.*;
+import org.bukkit.event.entity.EntityDamageByEntityEvent;
+import org.bukkit.event.entity.EntityDamageEvent;
+import org.bukkit.event.entity.EntityDeathEvent;
+import org.bukkit.event.entity.EntityTargetEvent;
+import org.bukkit.event.entity.EntityTransformEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.util.Vector;
+
 import xyz.devshah.minecraftbutharder.MinecraftButHarder;
 import xyz.devshah.minecraftbutharder.items.Armor;
 import xyz.devshah.minecraftbutharder.items.Weapons;
-
-import java.util.List;
-import java.util.Random;
 
 public class ZombieBossEvents implements Listener {
     MinecraftButHarder plugin;
@@ -88,7 +105,7 @@ public class ZombieBossEvents implements Listener {
                 Player shooter = (Player) ((Arrow) damager).getShooter();
                 ((Zombie) entity).setTarget(shooter);
                 event.setCancelled(true); // Players might have power 22 or stronger bows from skeletons
-                shooter.playSound(shooter.getLocation(), Sound.ITEM_SHIELD_BLOCK, 1, 1);
+                shooter.getWorld().playSound(shooter.getLocation(), Sound.ITEM_SHIELD_BLOCK, 1, 1);
 
                 if (r <= 0.20) {
                     spawnAirGuardian(entity, shooter);
