@@ -172,7 +172,7 @@ public class CustomArmorEnchants implements Listener {
                             if (entity instanceof Monster || entity instanceof Player) {
                                 Vector direction = entity.getLocation().toVector().subtract(player.getLocation().toVector());
             
-                                if (direction.length() <= 0.2) {
+                                if (direction.length() == 0) {
                                     direction = player.getLocation().getDirection();
                                 }
                                 direction.normalize();
