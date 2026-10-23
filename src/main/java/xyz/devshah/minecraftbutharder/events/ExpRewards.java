@@ -11,6 +11,7 @@ import org.bukkit.event.player.PlayerLevelChangeEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
+
 import xyz.devshah.minecraftbutharder.items.Armor;
 import xyz.devshah.minecraftbutharder.items.Items;
 import xyz.devshah.minecraftbutharder.items.Weapons;
@@ -36,7 +37,7 @@ public class ExpRewards implements Listener {
             player.setHealth(20);
             player.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 100, 2));
             player.setFoodLevel(20);
-            player.playSound(player.getLocation(), Sound.UI_TOAST_CHALLENGE_COMPLETE, 10, 0);
+            player.playSound(player.getLocation(), Sound.UI_TOAST_CHALLENGE_COMPLETE, 5, 0);
         }
 
         if (newLevel == 5) {
