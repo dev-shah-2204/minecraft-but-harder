@@ -6,6 +6,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+
 import xyz.devshah.minecraftbutharder.items.Armor;
 import xyz.devshah.minecraftbutharder.items.Items;
 import xyz.devshah.minecraftbutharder.items.Weapons;
@@ -98,6 +99,27 @@ public class GiveCustomItems implements CommandExecutor {
                 sender.sendMessage("Gave 1 [" + args[0]+ "] to " + player.getDisplayName());
                 return true;
             }
+            else if (args[0].equalsIgnoreCase("godHelmet")) {
+                giveItem(player, Armor.godHelmet);
+                sender.sendMessage("Gave 1 [" + args[0]+ "] to " + player.getDisplayName());
+                return true;
+            }
+            else if (args[0].equalsIgnoreCase("godChestplate")) {
+                giveItem(player, Armor.godChestplate);
+                sender.sendMessage("Gave 1 [" + args[0]+ "] to " + player.getDisplayName());
+                return true;
+            }
+            else if (args[0].equalsIgnoreCase("godLeggings")) {
+                giveItem(player, Armor.godLeggings);
+                sender.sendMessage("Gave 1 [" + args[0]+ "] to " + player.getDisplayName());
+                return true;
+            }
+            else if (args[0].equalsIgnoreCase("godBoots")) {
+                giveItem(player, Armor.godBoots);
+                sender.sendMessage("Gave 1 [" + args[0]+ "] to " + player.getDisplayName());
+                return true;
+            }
+
 
             // Weapons
             else if (args[0].equalsIgnoreCase("ancientVenomSword")) {
