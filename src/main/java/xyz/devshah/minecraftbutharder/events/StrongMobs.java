@@ -202,7 +202,8 @@ public class StrongMobs implements Listener {
         Entity entity = event.getEntity();
 
         if (entity instanceof Creeper) {
-            if (event.getCause().equals(EntityDamageEvent.DamageCause.LIGHTNING) || event.getCause().equals(EntityDamageEvent.DamageCause.FIRE) || event.getCause().equals(EntityDamageEvent.DamageCause.FIRE_TICK)) {
+            // Creeper immune to lightning, fire, and fall damage, to make charged creepers
+            if (event.getCause().equals(EntityDamageEvent.DamageCause.LIGHTNING) || event.getCause().equals(EntityDamageEvent.DamageCause.FIRE) || event.getCause().equals(EntityDamageEvent.DamageCause.FIRE_TICK) || event.getCause().equals(EntityDamageEvent.DamageCause.FALL)) {
                 event.setDamage(0);
             }
         }
