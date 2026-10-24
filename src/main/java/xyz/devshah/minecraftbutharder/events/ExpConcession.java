@@ -18,11 +18,19 @@ public class ExpConcession implements Listener {
 
     private final HashMap<String, Integer> levels = new HashMap<>();
 
-    // SOMEHOW I STARTED GAINING LEVELS ON ENCHANTING AFTER ADDING THE onInventoryClose EventHandler.
     @EventHandler
     public void onPlayerEnchantItem(EnchantItemEvent event) {
-        // Don't ask me how, but this logic works flawlessly.
-        event.getEnchanter().setLevel(event.getEnchanter().getLevel() + event.whichButton() + 1);
+        // Enchanting costs 0.3 levels per vanilla level (0.3, 0.6, 0.9 for the 3 buttons).
+        // Keep this the only EnchantItemEvent handler, or the levels get changed twice.
+        Player player = event.getEnchanter();
+        int vanillaCost = event.whichButton() + 1;
+
+        double after = Math.max(0, player.getLevel() + player.getExp() - 0.3 * vanillaCost);
+        int afterLevel = (int) after;
+
+        // Vanilla takes vanillaCost levels off after this event, so add it back in advance
+        player.setLevel(afterLevel + vanillaCost);
+        player.setExp((float) (after - afterLevel));
     }
 
     @EventHandler
@@ -43,13 +51,8 @@ public class ExpConcession implements Listener {
         if (event.getInventory() instanceof AnvilInventory) {
             Player player = (Player) event.getWhoClicked();
             if (!(levels.containsKey(player.getDisplayName()))) {
-                int level = player.getLevel();
-
-                if (level % 5 == 0) {
-                    // Else players might keep getting free rewards everytime they use anvil
-                    level += 1;
-                }
-                levels.put(player.getDisplayName(), level);
+                // ExpRewards only rewards new highest levels, so restoring the original level is safe
+                levels.put(player.getDisplayName(), player.getLevel());
             }
 
             if (event.getRawSlot() != 2) {

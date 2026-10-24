@@ -63,7 +63,7 @@ public final class MinecraftButHarder extends JavaPlugin {
 
         manager.registerEvents(new CustomMobEvents(), this);
         
-        if (getConfig().getBoolean("features.exp-rewards")) { manager.registerEvents(new ExpRewards(), this); } 
+        if (getConfig().getBoolean("features.exp-rewards")) { manager.registerEvents(new ExpRewards(this), this); } 
         else { System.out.println("§c[MinecraftButHarder] exp rewards disabled in config.yml"); }
 
         if (getConfig().getBoolean("features.graves")) 
