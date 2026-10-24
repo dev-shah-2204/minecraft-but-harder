@@ -23,6 +23,7 @@ import xyz.devshah.minecraftbutharder.items.Items;
 import xyz.devshah.minecraftbutharder.items.Weapons;
 
 public final class MinecraftButHarder extends JavaPlugin {
+    private CustomArmorEnchants armorEnchants;
 
     @Override
     public void onEnable() {
@@ -49,9 +50,10 @@ public final class MinecraftButHarder extends JavaPlugin {
 
         if (getConfig().getBoolean("features.custom-armor-enchants")) 
             {
-                CustomArmorEnchants armorEnchants = new CustomArmorEnchants(this); 
+                armorEnchants = new CustomArmorEnchants(this);
                 manager.registerEvents(armorEnchants, this);
-                Bukkit.getScheduler().runTaskTimer(this, () -> armorEnchants.applyArmorEffects(), 20*3, 20*2); 
+                Bukkit.getScheduler().runTaskTimer(this, () -> armorEnchants.applyArmorEffects(), 20*3, 20*2);
+                Bukkit.getScheduler().runTaskTimer(this, () -> armorEnchants.checkMedusasGaze(), 20, 20);
             } 
         else 
             { System.out.println("§c[MinecraftButHarder] custom armor enchants disabled in config.yml"); }
@@ -100,5 +102,6 @@ public final class MinecraftButHarder extends JavaPlugin {
     @Override
     public void onDisable() {
         // Plugin shutdown logic
+        if (armorEnchants != null) { armorEnchants.unpetrifyAll(); }
     }
 }
