@@ -7,7 +7,6 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Zombie;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.enchantment.EnchantItemEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.player.PlayerExpChangeEvent;
 import org.bukkit.inventory.ItemStack;
@@ -132,11 +131,5 @@ public class FreeCookedFood implements Listener {
             // It should be a little easier to get exp points than it is.
             event.setAmount((int) (event.getAmount() * plugin.getConfig().getDouble("exp.gain-multiplier")));
         }
-    }
-
-    @EventHandler
-    public void onPlayerEnchantItem(EnchantItemEvent event) {
-        // Don't ask me how, but this logic works flawlessly.
-        event.getEnchanter().setLevel(event.getEnchanter().getLevel() + event.whichButton() + 1);
     }
 }
