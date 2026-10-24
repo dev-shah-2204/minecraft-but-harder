@@ -33,7 +33,12 @@ armor-enchants:
   devils-invitation-chance: 0.30
   beastly-aura-chance: 0.15
   undead-army-chance: 0.17
+  medusas-gaze-chance: 0.30
   leap-of-faith-hearts: 3.5
+  divine-intervention-chance: 0.30
+  mirror-shield-chance: 0.40
+  thunderstruck-chance: 0.20
+  shadowstep-chance: 0.30
 
 weapon-enchants:
   bubonic-plague-chance: 0.7
