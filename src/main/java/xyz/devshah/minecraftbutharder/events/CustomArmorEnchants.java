@@ -6,6 +6,7 @@ import java.util.Random;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.Particle;
 import org.bukkit.Sound;
 import org.bukkit.entity.Arrow;
@@ -71,7 +72,13 @@ public class CustomArmorEnchants implements Listener {
             if (helmetLore.contains("§6Respiration")) { addEffect(player, PotionEffectType.WATER_BREATHING, 0); }
             else { removeEffect(player, PotionEffectType.WATER_BREATHING); }
 
-            if (helmetLore.contains("§6Night Vision")) { addEffect(player, PotionEffectType.NIGHT_VISION, 0); }
+            if (helmetLore.contains("§6Night Vision")) {
+                if (player.getInventory().getItemInOffHand().getType().equals(Material.TORCH)) {
+                    addEffect(player, PotionEffectType.NIGHT_VISION, 0);
+                } else {
+                    removeEffect(player, PotionEffectType.NIGHT_VISION);
+                }
+            }
             else { removeEffect(player, PotionEffectType.NIGHT_VISION); }
 
             if (helmetLore.contains("§6Stormborn")) {
