@@ -1,6 +1,7 @@
 package xyz.devshah.minecraftbutharder.events;
 
 import org.bukkit.Material;
+import org.bukkit.NamespacedKey;
 import org.bukkit.Server;
 import org.bukkit.Sound;
 import org.bukkit.enchantments.Enchantment;
@@ -8,15 +9,27 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerLevelChangeEvent;
+import org.bukkit.inventory.AnvilInventory;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.persistence.PersistentDataContainer;
+import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
+import xyz.devshah.minecraftbutharder.MinecraftButHarder;
 import xyz.devshah.minecraftbutharder.items.Armor;
 import xyz.devshah.minecraftbutharder.items.Items;
 import xyz.devshah.minecraftbutharder.items.Weapons;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 public class ExpRewards implements Listener {
+    // Reward levels a player has already received, stored on the player so it survives restarts
+    private final NamespacedKey receivedRewardsKey;
+    public ExpRewards(MinecraftButHarder plugin) { this.receivedRewardsKey = new NamespacedKey(plugin, "received-level-rewards"); }
 
     private void giveItem(Player player, ItemStack item) {
         if (player.getInventory().firstEmpty() == -1) {
@@ -28,17 +41,47 @@ public class ExpRewards implements Listener {
 
     @EventHandler
     public void onPlayerLevelUp(PlayerLevelChangeEvent event) {
-        int newLevel = event.getNewLevel();
         Player player = event.getPlayer();
-        Server server = player.getServer();
+        PersistentDataContainer data = player.getPersistentDataContainer();
+
+        Set<Integer> received = new HashSet<>();
+        if (data.has(receivedRewardsKey, PersistentDataType.INTEGER_ARRAY)) {
+            for (int level : data.get(receivedRewardsKey, PersistentDataType.INTEGER_ARRAY)) { received.add(level); }
+        } else {
+            // Players from before this was tracked already got the rewards up to their current level
+            for (int level = 5; level <= event.getOldLevel(); level += 5) { received.add(level); }
+            saveReceived(data, received);
+        }
+
+        // ExpConcession temporarily sets the level to 201 while an anvil is open, that isn't a real level up
+        if (player.getOpenInventory().getTopInventory() instanceof AnvilInventory) { return; }
+
+        // Every reward level passed on the way up, in case several were skipped at once
+        List<Integer> newRewards = new ArrayList<>();
+        for (int level = (event.getOldLevel() / 5 + 1) * 5; level <= event.getNewLevel(); level += 5) {
+            // Skip rewards already received, so dying or spending levels can't farm them
+            if (received.add(level)) { newRewards.add(level); }
+        }
+        if (newRewards.isEmpty()) { return; }
+        saveReceived(data, received);
 
         // Give player rewards on level 5 or multiple of 5
-        if (newLevel % 5 == 0) {
-            player.setHealth(20);
-            player.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 100, 2));
-            player.setFoodLevel(20);
-            player.playSound(player.getLocation(), Sound.UI_TOAST_CHALLENGE_COMPLETE, 5, 0);
+        player.setHealth(20);
+        player.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 100, 2));
+        player.setFoodLevel(20);
+        player.playSound(player.getLocation(), Sound.UI_TOAST_CHALLENGE_COMPLETE, 5, 0);
+
+        for (int level : newRewards) {
+            giveLevelReward(player, level);
         }
+    }
+
+    private void saveReceived(PersistentDataContainer data, Set<Integer> received) {
+        data.set(receivedRewardsKey, PersistentDataType.INTEGER_ARRAY, received.stream().mapToInt(Integer::intValue).toArray());
+    }
+
+    private void giveLevelReward(Player player, int newLevel) {
+        Server server = player.getServer();
 
         if (newLevel == 5) {
             server.broadcastMessage(player.getDisplayName() + " got an enchanted Golden Pickaxe!");
