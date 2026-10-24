@@ -1,15 +1,21 @@
 package xyz.devshah.minecraftbutharder.events;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
+import java.util.Set;
+import java.util.UUID;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.NamespacedKey;
 import org.bukkit.Particle;
 import org.bukkit.Sound;
 import org.bukkit.entity.Arrow;
+import org.bukkit.entity.Boss;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.IronGolem;
@@ -27,7 +33,9 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
 import org.bukkit.event.entity.EntityExhaustionEvent;
+import org.bukkit.event.world.EntitiesLoadEvent;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.util.Vector;
@@ -39,7 +47,14 @@ import xyz.devshah.minecraftbutharder.MinecraftButHarder;
 
 public class CustomArmorEnchants implements Listener {
     MinecraftButHarder plugin;
-    public CustomArmorEnchants(MinecraftButHarder plugin) { this.plugin = plugin; }
+    public CustomArmorEnchants(MinecraftButHarder plugin) {
+        this.plugin = plugin;
+        this.petrifiedKey = new NamespacedKey(plugin, "petrified");
+    }
+
+    private final HashMap<UUID, Integer> gazeSeconds = new HashMap<>();
+    private final Set<Mob> petrified = new HashSet<>();
+    private final NamespacedKey petrifiedKey;
 
     private void addEffect(Player player, PotionEffectType type, Integer amplifer) {
         player.addPotionEffect(new PotionEffect(type, PotionEffect.INFINITE_DURATION, amplifer, false, false, true));
@@ -131,7 +146,76 @@ public class CustomArmorEnchants implements Listener {
         }
     }
 
-    @EventHandler 
+    // Runs every second
+    public void checkMedusasGaze() {
+        Set<UUID> stillTargeting = new HashSet<>();
+
+        for (Player player : Bukkit.getServer().getOnlinePlayers()) {
+            if (!getLore(player.getInventory().getLeggings()).contains("§6Medusa's gaze")) { continue; }
+
+            for (Entity entity : player.getNearbyEntities(32, 16, 32)) {
+                if (!(entity instanceof Mob) || entity instanceof Boss || "The Withered Sovereign".equals(entity.getCustomName())) { continue; }
+
+                Mob mob = (Mob) entity;
+                if (petrified.contains(mob) || !player.equals(mob.getTarget())) { continue; }
+
+                stillTargeting.add(mob.getUniqueId());
+                int seconds = gazeSeconds.merge(mob.getUniqueId(), 1, Integer::sum);
+
+                if (seconds > 5) {
+                    gazeSeconds.remove(mob.getUniqueId());
+
+                    Random random = new Random();
+                    double r = random.nextDouble();
+                    if (r <= plugin.getConfig().getDouble("armor-enchants.medusas-gaze-chance")) {
+                        petrify(mob);
+                    }
+                }
+            }
+        }
+
+        gazeSeconds.keySet().retainAll(stillTargeting);
+    }
+
+    private void petrify(Mob mob) {
+        petrified.add(mob);
+        mob.setAI(false);
+        mob.getPersistentDataContainer().set(petrifiedKey, PersistentDataType.BYTE, (byte) 1);
+
+        mob.getWorld().playSound(mob.getLocation(), Sound.BLOCK_STONE_PLACE, 1, 0.5f);
+        mob.getWorld().spawnParticle(Particle.BLOCK, mob.getLocation().add(0, 1, 0), 40, 0.3, 0.6, 0.3, Material.STONE.createBlockData());
+
+        Bukkit.getServer().getScheduler().runTaskLater(plugin, () -> {
+            petrified.remove(mob);
+            // If the chunk unloaded, onEntitiesLoad restores it instead
+            if (mob.isValid()) { unpetrify(mob); }
+        }, 20*3);
+    }
+
+    private void unpetrify(Mob mob) {
+        mob.setAI(true);
+        mob.getPersistentDataContainer().remove(petrifiedKey);
+        mob.getWorld().spawnParticle(Particle.BLOCK, mob.getLocation().add(0, 1, 0), 20, 0.3, 0.6, 0.3, Material.STONE.createBlockData());
+    }
+
+    // Called on plugin disable, so mobs don't stay stone forever
+    public void unpetrifyAll() {
+        for (Mob mob : petrified) {
+            if (mob.isValid()) { unpetrify(mob); }
+        }
+        petrified.clear();
+    }
+
+    @EventHandler
+    public void onEntitiesLoad(EntitiesLoadEvent event) {
+        for (Entity entity : event.getEntities()) {
+            if (entity instanceof Mob && entity.getPersistentDataContainer().has(petrifiedKey, PersistentDataType.BYTE)) {
+                unpetrify((Mob) entity);
+            }
+        }
+    }
+
+    @EventHandler
     public void onDamage(EntityDamageEvent event) {
         if (event.getEntity() instanceof Player) {
             Player player = (Player) event.getEntity();
@@ -149,7 +233,7 @@ public class CustomArmorEnchants implements Listener {
                         Random random = new Random();
                         double r = random.nextDouble();
 
-                        if (r <= 0.40) {
+                        if (r <= plugin.getConfig().getDouble("armor-enchants.divine-intervention-chance")) {
                             event.setCancelled(true);
                             player.setHealth(12);
                             player.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 20*5, 1, true, true, true));
@@ -245,7 +329,7 @@ public class CustomArmorEnchants implements Listener {
                     // Strike lightning on damager
                     if (damager instanceof LivingEntity) {
                         Location location = damager.getLocation();
-                        if (r <= 0.40) { damager.getWorld().strikeLightning(location); }
+                        if (r <= plugin.getConfig().getDouble("armor-enchants.thunderstruck-chance")) { damager.getWorld().strikeLightning(location); }
                     } 
 
                     else if (damager instanceof Arrow) {
@@ -357,7 +441,7 @@ public class CustomArmorEnchants implements Listener {
                         Random random = new Random();
                         double r = random.nextDouble();
 
-                        if (r <= 0.50) {
+                        if (r <= plugin.getConfig().getDouble("armor-enchants.mirror-shield-chance")) {
                             player.getWorld().playSound(player.getLocation(), Sound.ITEM_SHIELD_BLOCK, 1, 1);
                             event.setCancelled(true);
                             projectile.remove();
@@ -382,7 +466,7 @@ public class CustomArmorEnchants implements Listener {
                         Random random = new Random();
                         double r = random.nextDouble();
 
-                        if (r <= 0.40) {
+                        if (r <= plugin.getConfig().getDouble("armor-enchants.shadowstep-chance")) {
                             List<Entity> nearbyMobs = player.getNearbyEntities(25, 25, 15);
                             for (Entity entity : nearbyMobs) {
                                 if (entity instanceof Mob) {
