@@ -1,5 +1,10 @@
 package xyz.devshah.minecraftbutharder.events;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.Server;
@@ -20,11 +25,6 @@ import xyz.devshah.minecraftbutharder.MinecraftButHarder;
 import xyz.devshah.minecraftbutharder.items.Armor;
 import xyz.devshah.minecraftbutharder.items.Items;
 import xyz.devshah.minecraftbutharder.items.Weapons;
-
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 
 public class ExpRewards implements Listener {
     // Reward levels a player has already received, stored on the player so it survives restarts
