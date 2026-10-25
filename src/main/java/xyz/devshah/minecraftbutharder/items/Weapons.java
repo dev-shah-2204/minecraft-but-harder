@@ -1,12 +1,12 @@
 package xyz.devshah.minecraftbutharder.items;
 
+import java.util.ArrayList;
+
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-
-import java.util.ArrayList;
 
 public class Weapons {
     public static ItemStack devilStick;
@@ -41,6 +41,7 @@ public class Weapons {
 
     public static void createPoisonStoneSword() {
         ItemStack poisonStoneSword = new ItemStack(Material.STONE_SWORD, 1);
+        poisonStoneSword.addEnchantment(Enchantment.SHARPNESS, 1);
         poisonStoneSword.addEnchantment(Enchantment.UNBREAKING, 3);
         ItemMeta meta = poisonStoneSword.getItemMeta();
 
@@ -132,9 +133,9 @@ public class Weapons {
         ItemStack sword = new ItemStack(Material.DIAMOND_SWORD, 1);
 
         sword.addUnsafeEnchantment(Enchantment.SHARPNESS, 7);
-        sword.addUnsafeEnchantment(Enchantment.BANE_OF_ARTHROPODS, 7);
-        sword.addUnsafeEnchantment(Enchantment.SMITE, 7);
-        sword.addUnsafeEnchantment(Enchantment.LOOTING, 4);
+        sword.addUnsafeEnchantment(Enchantment.BANE_OF_ARTHROPODS, 5);
+        sword.addUnsafeEnchantment(Enchantment.SMITE, 6);
+        sword.addUnsafeEnchantment(Enchantment.LOOTING, 3);
 
 
         ItemMeta meta = sword.getItemMeta();
