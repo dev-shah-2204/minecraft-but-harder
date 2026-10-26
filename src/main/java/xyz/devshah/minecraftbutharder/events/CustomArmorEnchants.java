@@ -152,7 +152,7 @@ public class CustomArmorEnchants implements Listener {
         for (Player player : Bukkit.getServer().getOnlinePlayers()) {
             if (!getLore(player.getInventory().getLeggings()).contains("§6Medusa's gaze")) { continue; }
 
-            for (Entity entity : player.getNearbyEntities(32, 16, 32)) {
+            for (Entity entity : player.getNearbyEntities(20, 3, 20)) {
                 if (!(entity instanceof Mob) || entity instanceof Boss || "The Withered Sovereign".equals(entity.getCustomName())) { continue; }
 
                 Mob mob = (Mob) entity;
