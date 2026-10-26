@@ -1,7 +1,12 @@
 package xyz.devshah.minecraftbutharder.events;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.attribute.Attribute;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
@@ -17,11 +22,8 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.util.Vector;
-import xyz.devshah.minecraftbutharder.MinecraftButHarder;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import xyz.devshah.minecraftbutharder.MinecraftButHarder;
 
 public class CustomItemEnchants implements Listener {
     MinecraftButHarder plugin;
@@ -39,7 +41,6 @@ public class CustomItemEnchants implements Listener {
             if (item.getItemMeta() != null && item.getItemMeta().getLore() != null && damaged instanceof LivingEntity) {
                 List<String> lore = item.getItemMeta().getLore();
                 Random random = new Random();
-                double r = random.nextDouble();
 
                 // Nausea
                 if (lore.contains("§6Nausea")) {
@@ -57,6 +58,7 @@ public class CustomItemEnchants implements Listener {
 
                 // Bubonic Plague
                 if (lore.contains("§6Bubonic Plague")) {
+                    double r = random.nextDouble();
                     if (r <= plugin.getConfig().getDouble("weapon-enchants.bubonic-plague-chance")) {
                         ((LivingEntity) damaged).addPotionEffect(new PotionEffect(PotionEffectType.WITHER, 7*20, 0, false, false));
                     }
@@ -64,9 +66,22 @@ public class CustomItemEnchants implements Listener {
 
                 // Whirlwind
                 if (lore.contains("§6Whirlwind")) {
+                    double r = random.nextDouble();
                     if (r <= plugin.getConfig().getDouble("weapon-enchants.whirlwind-chance")) {
                         Vector velocity = new Vector(0, 3, 0);
                         damaged.setVelocity(velocity);
+                    }
+                }
+
+                // Life Steal
+                if (lore.contains("§6Life Steal")) {
+                    double r = random.nextDouble();
+                    if (r <= plugin.getConfig().getDouble("weapon-enchants.life-steal-chance")) {
+                        double damage = event.getFinalDamage();
+                        double damagerMaxHealth = ((LivingEntity) damager).getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue();
+                        double newHealth = damage + ((LivingEntity) damager).getHealth();
+                    
+                        ((LivingEntity) damager).setHealth(Math.min(newHealth, damagerMaxHealth));
                     }
                 }
             }
