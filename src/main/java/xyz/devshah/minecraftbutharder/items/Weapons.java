@@ -88,7 +88,7 @@ public class Weapons {
 
         ArrayList<String> lore = new ArrayList<>();
         lore.add("Unbreakable");
-        lore.add("§6Wrath of God");
+        // lore.add("§6Wrath of God");
         lore.add("§6Venom");
         lore.add("§9The famed sword of the");
         lore.add("§9Makurian king. The excalibur");
