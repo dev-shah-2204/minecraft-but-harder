@@ -32,8 +32,8 @@ armor-enchants:
   iron-army-chance: 0.10
   devils-invitation-chance: 0.30
   beastly-aura-chance: 0.15
-  undead-army-chance: 0.17
-  medusas-gaze-chance: 0.30
+  undead-army-chance: 0.20
+  medusas-gaze-chance: 0.65
   leap-of-faith-hearts: 3.5
   divine-intervention-chance: 0.30
   mirror-shield-chance: 0.40
@@ -41,6 +41,7 @@ armor-enchants:
   shadowstep-chance: 0.30
 
 weapon-enchants:
-  bubonic-plague-chance: 0.7
+  bubonic-plague-chance: 0.20
   whirlwind-chance: 0.35
-  wrath-of-god-cooldown: 7  # seconds
+  wrath-of-god-cooldown: 3  # seconds
+  life-steal-chance: 0.3
