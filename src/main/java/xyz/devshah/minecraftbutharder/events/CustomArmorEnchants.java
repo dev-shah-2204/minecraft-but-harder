@@ -22,7 +22,6 @@ import org.bukkit.entity.IronGolem;
 import org.bukkit.entity.LightningStrike;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Mob;
-import org.bukkit.entity.Monster;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Projectile;
 import org.bukkit.entity.Wolf;
@@ -250,28 +249,32 @@ public class CustomArmorEnchants implements Listener {
                 // Earthshaker
                 if (boots.getItemMeta().getLore().contains("§6Earthshaker")) {
                     if (event.getCause().equals(DamageCause.FALL)) {
-                        event.setCancelled(true);
-                        float fallHeight = player.getFallDistance();
-                        double knockBackMultiplier = (fallHeight / 10) * (1 - (fallHeight / 5));
+                        double fallDamage = event.getDamage();
+                        double fallHeight = fallDamage + 3;
+                    
 
+                        if (fallHeight >= 5) {
+                            event.setCancelled(true);
+                            double knockBackMultiplier = Math.min((fallHeight / 5), 5);
 
-                        player.getWorld().playSound(player.getLocation(), Sound.ENTITY_PLAYER_BIG_FALL, 2, 1);
-                        // player.getWorld().spawnParticle(Particle.EXPLOSION, player.getLocation(), 5, 2, 0, 2);
-                        player.getWorld().spawnParticle(Particle.BLOCK, player.getLocation(), 20, 2, 0, 2);
-                        
-                        for (Entity entity : player.getNearbyEntities(5, 3, 5)) {
-                            if (entity instanceof Monster || entity instanceof Player) {
-                                Vector direction = entity.getLocation().toVector().subtract(player.getLocation().toVector());
-            
-                                if (direction.length() == 0) {
-                                    direction = player.getLocation().getDirection();
+                            player.getWorld().playSound(player.getLocation(), Sound.ENTITY_PLAYER_BIG_FALL, 2, 1);
+                            // player.getWorld().spawnParticle(Particle.EXPLOSION, player.getLocation(), 5, 2, 0, 2);
+                            player.getWorld().spawnParticle(Particle.BLOCK, player.getLocation(), 20, 2, 0, 2, Material.STONE.createBlockData());
+                            
+                            for (Entity entity : player.getNearbyEntities(6, 3, 6)) {
+                                if (entity instanceof LivingEntity) {
+                                    Vector direction = entity.getLocation().toVector().subtract(player.getLocation().toVector());
+                
+                                    if (direction.length() == 0) {
+                                        direction = player.getLocation().getDirection();
+                                    }
+                                    
+                                    direction.normalize();
+                                    direction.setY(0.6);
+
+                                    ((LivingEntity) entity).damage(3);
+                                    entity.setVelocity(direction.multiply(knockBackMultiplier));
                                 }
-                                direction.normalize();
-                                if (direction.getY() <= 1) { 
-                                    direction.setY(1);  // Send the mobs flying
-                                }
-                                ((LivingEntity) entity).damage(3);
-                                entity.setVelocity(direction.multiply(knockBackMultiplier));
                             }
                         }
                     }
